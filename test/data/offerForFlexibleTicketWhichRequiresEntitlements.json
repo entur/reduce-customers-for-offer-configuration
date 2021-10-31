@@ -1,0 +1,1237 @@
+{
+  "id": "aa004b4e-c539-4fd8-bc1f-82cc968f5d4d",
+  "requestedByDistributionChannel": "ENT:DistributionChannel:SalesAndService",
+  "pricedResource": {
+    "id": "785de3f6-2d56-4cfe-9f4b-ebd87aea019a",
+    "resourceType": "TripPattern"
+  },
+  "salesPackageConfig": {
+    "id": "VYT:SalesPackage:FlexRefundable",
+    "version": "VYT:Version:SP-FlexRefundable-1",
+    "name": [
+      {
+        "lang": "nob",
+        "value": "Flex Refunderbar"
+      },
+      {
+        "lang": "nno",
+        "value": "Flex Refunderbar"
+      },
+      {
+        "lang": "en",
+        "value": "Flex Refundable"
+      }
+    ],
+    "description": [],
+    "prices": [
+      {
+        "amount": "50.00",
+        "currency": "NOK"
+      }
+    ],
+    "priceContributions": [
+      {
+        "amount": "0.00",
+        "currency": "NOK"
+      }
+    ],
+    "parameters": {
+      "refunds": [],
+      "luggageAllowances": [],
+      "exchanging": [],
+      "reserving": [],
+      "replacing": [],
+      "purchaseWindow": [],
+      "entitlementGiven": [],
+      "roundTrip": [],
+      "transferability": []
+    },
+    "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+    "datedServiceJourneys": [
+      {
+        "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+        "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+      }
+    ],
+    "distributions": [],
+    "fareProducts": [
+      {
+        "id": "VYT:SupplementProduct:Bicycle",
+        "selectableId": "IZnkFy",
+        "version": "VYT:Version:SUP-Bicycle-1",
+        "name": [
+          {
+            "lang": "nob",
+            "value": "Sykkel"
+          },
+          {
+            "lang": "nno",
+            "value": "Sykkel"
+          },
+          {
+            "lang": "eng",
+            "value": "Bicycle"
+          }
+        ],
+        "description": [
+          {
+            "lang": "eng",
+            "value": "There are places available for bicycles on the long regional trains."
+          },
+          {
+            "lang": "nob",
+            "value": "- Reservasjon av sykkelplass på lange regiontogstrekninger"
+          }
+        ],
+        "organisation": {
+          "id": "VYT:Authority:VYT",
+          "privateCode": 57
+        },
+        "prices": [
+          {
+            "amount": "229.00",
+            "currency": "NOK"
+          }
+        ],
+        "priceContributions": [
+          {
+            "amount": "-284.00",
+            "vatGroup": "GENERAL_VAT",
+            "currency": "NOK"
+          }
+        ],
+        "parameters": {
+          "refunds": [],
+          "luggageAllowances": [
+            {
+              "id": "VYT:LuggageAllowance:Bicycle",
+              "selectableId": "8E4zTc",
+              "version": "VYT:Version:LuggageAllowance-Bicycle-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": false
+            }
+          ],
+          "exchanging": [],
+          "reserving": [],
+          "replacing": [],
+          "purchaseWindow": [],
+          "entitlementGiven": [],
+          "roundTrip": [],
+          "transferability": []
+        },
+        "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+        "datedServiceJourneys": [
+          {
+            "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+            "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+          }
+        ],
+        "optional": true,
+        "validableElements": [
+          {
+            "id": "VYT:ValidableElement:Bicycle",
+            "version": "VYT:Version:VE-Bicycle-1",
+            "name": [
+              {
+                "lang": "nob",
+                "value": "Bicycle"
+              },
+              {
+                "lang": "eng",
+                "value": "Bicycle"
+              }
+            ],
+            "description": [
+              {
+                "lang": "nob",
+                "value": "Bicycle"
+              },
+              {
+                "lang": "eng",
+                "value": "Bicycle"
+              }
+            ],
+            "prices": [
+              {
+                "amount": "513.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "parameters": {
+              "refunds": [],
+              "luggageAllowances": [],
+              "exchanging": [],
+              "reserving": [],
+              "replacing": [],
+              "purchaseWindow": [],
+              "entitlementGiven": [],
+              "roundTrip": [],
+              "transferability": []
+            },
+            "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+            "datedServiceJourneys": [
+              {
+                "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+              }
+            ],
+            "fareStructureElements": [
+              {
+                "id": "VYT:FareStructureElement:Bicycle",
+                "version": "VYT:Version:FSE-Bicycle-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "513.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "513.00",
+                    "vatGroup": "GENERAL_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "parameters": {
+                  "refunds": [],
+                  "luggageAllowances": [],
+                  "exchanging": [],
+                  "reserving": [
+                    {
+                      "id": "VYT:Reserving:CompulsoryRes",
+                      "selectableId": "MAYdzV",
+                      "version": "VYT:Version:RES-CompulsoryRes-1",
+                      "name": [],
+                      "description": [],
+                      "prices": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "priceContributions": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "typeOfUsageParameter": "ENT:TypeOfUsageParameter:SeatMap",
+                      "optional": false
+                    }
+                  ],
+                  "replacing": [],
+                  "purchaseWindow": [],
+                  "entitlementGiven": [],
+                  "roundTrip": [],
+                  "transferability": []
+                },
+                "serviceJourneyIds": [
+                  "VYG:ServiceJourney:1-242-605-202110302101"
+                ],
+                "datedServiceJourneys": [
+                  {
+                    "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                    "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+                  }
+                ],
+                "interval": {
+                  "id": "VYT:GeographicalInterval:502TEN",
+                  "version": "VYT:Version:4df1b626-fd0d-44f0-af7a-bff5b278d119",
+                  "name": [],
+                  "description": [],
+                  "distance": 502,
+                  "zones": []
+                },
+                "quotas": []
+              }
+            ]
+          }
+        ],
+        "originatingFromProductId": "VYT:PreassignedFareProduct:FlexRefundable",
+        "pointToPointValidity": {
+          "fromPlace": "NSR:StopPlace:337",
+          "toPlace": "NSR:StopPlace:548"
+        }
+      },
+      {
+        "id": "VYT:SupplementProduct:SmallAnimal",
+        "selectableId": "0x1qcK",
+        "version": "VYT:Version:SUP-SmallAnimal-1",
+        "name": [
+          {
+            "lang": "nob",
+            "value": "Lite kjæledyr"
+          },
+          {
+            "lang": "nno",
+            "value": "Lite kjæledyr"
+          },
+          {
+            "lang": "eng",
+            "value": "Small pet"
+          }
+        ],
+        "description": [
+          {
+            "lang": "eng",
+            "value": "Small pets travel for free with their owners."
+          },
+          {
+            "lang": "nob",
+            "value": "- Små kjæledyr reiser gratis sammen med eier"
+          }
+        ],
+        "organisation": {
+          "id": "VYT:Authority:VYT",
+          "privateCode": 57
+        },
+        "prices": [
+          {
+            "amount": "0.00",
+            "currency": "NOK"
+          }
+        ],
+        "priceContributions": [
+          {
+            "amount": "0.00",
+            "currency": "NOK"
+          }
+        ],
+        "parameters": {
+          "refunds": [],
+          "luggageAllowances": [
+            {
+              "id": "VYT:LuggageAllowance:SmallAnimal",
+              "selectableId": "WKAKxV",
+              "version": "VYT:Version:LuggageAllowance-SmallAnimal-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": false
+            }
+          ],
+          "exchanging": [],
+          "reserving": [],
+          "replacing": [],
+          "purchaseWindow": [],
+          "entitlementGiven": [],
+          "roundTrip": [],
+          "transferability": []
+        },
+        "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+        "datedServiceJourneys": [
+          {
+            "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+            "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+          }
+        ],
+        "optional": true,
+        "validableElements": [
+          {
+            "id": "VYT:ValidableElement:SmallAnimal",
+            "version": "VYT:Version:VE-SmallAnimal-1",
+            "name": [
+              {
+                "lang": "nob",
+                "value": "SmallAnimal"
+              },
+              {
+                "lang": "eng",
+                "value": "SmallAnimal"
+              }
+            ],
+            "description": [
+              {
+                "lang": "nob",
+                "value": "SmallAnimal"
+              },
+              {
+                "lang": "eng",
+                "value": "SmallAnimal"
+              }
+            ],
+            "prices": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "parameters": {
+              "refunds": [],
+              "luggageAllowances": [],
+              "exchanging": [],
+              "reserving": [
+                {
+                  "id": "VYT:Reserving:CompulsoryRes",
+                  "selectableId": "UMsNUM",
+                  "version": "VYT:Version:RES-CompulsoryRes-1",
+                  "name": [],
+                  "description": [],
+                  "prices": [
+                    {
+                      "amount": "0.00",
+                      "currency": "NOK"
+                    }
+                  ],
+                  "priceContributions": [
+                    {
+                      "amount": "0.00",
+                      "currency": "NOK"
+                    }
+                  ],
+                  "typeOfUsageParameter": "ENT:TypeOfUsageParameter:SeatMap",
+                  "optional": false
+                }
+              ],
+              "replacing": [],
+              "purchaseWindow": [],
+              "entitlementGiven": [],
+              "roundTrip": [],
+              "transferability": []
+            },
+            "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+            "datedServiceJourneys": [
+              {
+                "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+              }
+            ],
+            "fareStructureElements": []
+          }
+        ],
+        "originatingFromProductId": "VYT:PreassignedFareProduct:FlexRefundable",
+        "pointToPointValidity": {
+          "fromPlace": "NSR:StopPlace:337",
+          "toPlace": "NSR:StopPlace:548"
+        }
+      },
+      {
+        "id": "VYT:SupplementProduct:LargeAnimal",
+        "selectableId": "kQuVvt",
+        "version": "VYT:Version:SUP-LargeAnimal-1",
+        "name": [
+          {
+            "lang": "nob",
+            "value": "Hund over 40 cm"
+          },
+          {
+            "lang": "nno",
+            "value": "Hund over 40 cm"
+          },
+          {
+            "lang": "eng",
+            "value": "Large animal"
+          }
+        ],
+        "description": [
+          {
+            "lang": "eng",
+            "value": "Large dogs over 40 cm tall at the shoulder will be assigned their own seat to sit in front of."
+          },
+          {
+            "lang": "nob",
+            "value": "- Stor hund med skulderhøyde over 40 cm og vil tildeles et eget sete hunden kan sitte foran"
+          }
+        ],
+        "organisation": {
+          "id": "VYT:Authority:VYT",
+          "privateCode": 57
+        },
+        "prices": [
+          {
+            "amount": "513.00",
+            "currency": "NOK"
+          }
+        ],
+        "priceContributions": [
+          {
+            "amount": "0.00",
+            "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+            "currency": "NOK"
+          }
+        ],
+        "parameters": {
+          "refunds": [],
+          "luggageAllowances": [
+            {
+              "id": "VYT:LuggageAllowance:LargeAnimal",
+              "selectableId": "74C218",
+              "version": "VYT:Version:LuggageAllowance-LargeAnimal-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": false
+            }
+          ],
+          "exchanging": [],
+          "reserving": [],
+          "replacing": [],
+          "purchaseWindow": [],
+          "entitlementGiven": [],
+          "roundTrip": [],
+          "transferability": []
+        },
+        "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+        "datedServiceJourneys": [
+          {
+            "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+            "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+          }
+        ],
+        "optional": true,
+        "validableElements": [
+          {
+            "id": "VYT:ValidableElement:LargeAnimal",
+            "version": "VYT:Version:VE-LargeAnimal-1",
+            "name": [
+              {
+                "lang": "nob",
+                "value": "LargeAnimal"
+              },
+              {
+                "lang": "eng",
+                "value": "LargeAnimal"
+              }
+            ],
+            "description": [
+              {
+                "lang": "nob",
+                "value": "LargeAnimal"
+              },
+              {
+                "lang": "eng",
+                "value": "LargeAnimal"
+              }
+            ],
+            "prices": [
+              {
+                "amount": "513.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "parameters": {
+              "refunds": [],
+              "luggageAllowances": [],
+              "exchanging": [],
+              "reserving": [],
+              "replacing": [],
+              "purchaseWindow": [],
+              "entitlementGiven": [],
+              "roundTrip": [],
+              "transferability": []
+            },
+            "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+            "datedServiceJourneys": [
+              {
+                "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+              }
+            ],
+            "fareStructureElements": [
+              {
+                "id": "VYT:FareStructureElement:LargeAnimal",
+                "version": "VYT:Version:FSE-LargeAnimal-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "513.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "513.00",
+                    "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "parameters": {
+                  "refunds": [],
+                  "luggageAllowances": [],
+                  "exchanging": [],
+                  "reserving": [
+                    {
+                      "id": "VYT:Reserving:CompulsoryRes",
+                      "selectableId": "hNan7a",
+                      "version": "VYT:Version:RES-CompulsoryRes-1",
+                      "name": [],
+                      "description": [],
+                      "prices": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "priceContributions": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "typeOfUsageParameter": "ENT:TypeOfUsageParameter:SeatMap",
+                      "optional": false
+                    }
+                  ],
+                  "replacing": [],
+                  "purchaseWindow": [],
+                  "entitlementGiven": [],
+                  "roundTrip": [],
+                  "transferability": []
+                },
+                "serviceJourneyIds": [
+                  "VYG:ServiceJourney:1-242-605-202110302101"
+                ],
+                "datedServiceJourneys": [
+                  {
+                    "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                    "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+                  }
+                ],
+                "interval": {
+                  "id": "VYT:GeographicalInterval:502TEN",
+                  "version": "VYT:Version:4df1b626-fd0d-44f0-af7a-bff5b278d119",
+                  "name": [],
+                  "description": [],
+                  "distance": 502,
+                  "zones": []
+                },
+                "quotas": []
+              }
+            ]
+          }
+        ],
+        "originatingFromProductId": "VYT:PreassignedFareProduct:FlexRefundable",
+        "pointToPointValidity": {
+          "fromPlace": "NSR:StopPlace:337",
+          "toPlace": "NSR:StopPlace:548"
+        }
+      },
+      {
+        "id": "VYT:PreassignedFareProduct:FlexRefundable",
+        "selectableId": "Dx6U3J",
+        "version": "VYT:Version:PFP-FlexRefundable-1",
+        "name": [
+          {
+            "lang": "nob",
+            "value": "Flex Refunderbar"
+          },
+          {
+            "lang": "nno",
+            "value": "Flex Refunderbar"
+          },
+          {
+            "lang": "eng",
+            "value": "Flex Refundable"
+          }
+        ],
+        "description": [
+          {
+            "lang": "eng",
+            "value": "Assigned seating. Can be changed. Refundable."
+          },
+          {
+            "lang": "nob",
+            "value": "- Sete tildeles\\n- Kan endres\\n- Refunderbar"
+          }
+        ],
+        "organisation": {
+          "id": "VYT:Authority:VYT",
+          "privateCode": 57
+        },
+        "prices": [
+          {
+            "amount": "50.00",
+            "currency": "NOK"
+          }
+        ],
+        "priceContributions": [
+          {
+            "amount": "0.00",
+            "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+            "currency": "NOK"
+          }
+        ],
+        "properties": {
+          "fareClasses": ["STANDARD_CLASS"],
+          "accommodations": ["SEATING"]
+        },
+        "parameters": {
+          "userProfile": {
+            "id": "VYT:UserProfile:Adult",
+            "selectableId": "1de7N9",
+            "version": "VYT:Version:UP-Adult-1",
+            "name": [
+              {
+                "lang": "nob",
+                "value": "Voksen"
+              },
+              {
+                "lang": "eng",
+                "value": "Adult"
+              },
+              {
+                "lang": "nno",
+                "value": "Vaksen"
+              }
+            ],
+            "prices": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "optional": false
+          },
+          "refunds": [
+            {
+              "id": "VYT:Refunding:FullRefund",
+              "selectableId": "rOdFXL",
+              "version": "VYT:Version:REF-FullRefund-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            },
+            {
+              "id": "VYT:Refunding:FullRefundFee",
+              "selectableId": "t562Az",
+              "version": "VYT:Version:REF-FullRefundFee-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "100.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "100.00",
+                  "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            }
+          ],
+          "usageValidityPeriod": {
+            "id": "VYT:UsageValidityPeriod:SingleTrip",
+            "selectableId": "tvJDCV",
+            "version": "VYT:Version:UVP-SingleTrip-1",
+            "name": [],
+            "description": [],
+            "prices": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "optional": false
+          },
+          "luggageAllowances": [],
+          "exchanging": [
+            {
+              "id": "VYT:Exchanging:FlexRefundable",
+              "selectableId": "pZq0KL",
+              "version": "VYT:Version:EXC-FlexRefundable-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            },
+            {
+              "id": "VYT:Exchanging:FlexRefundableFee",
+              "selectableId": "tzSc9m",
+              "version": "VYT:Version:EXC-PlusRefundableFee-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            },
+            {
+              "id": "VYT:Exchanging:SameProductAnyDay",
+              "selectableId": "fPgJAO",
+              "version": "VYT:Version:EXC-SameProductAnyDay-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            },
+            {
+              "id": "VYT:Exchanging:SameProductAnyDayFee",
+              "selectableId": "qwo6oJ",
+              "version": "VYT:Version:EXC-SameProductAnyDayFee-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "100.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "100.00",
+                  "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": true
+            }
+          ],
+          "reserving": [],
+          "replacing": [],
+          "purchaseWindow": [
+            {
+              "id": "VYT:PurchaseWindow:StandardFromDuration",
+              "selectableId": "NnF0gM",
+              "version": "VYT:Version:PUW-StandardFromDuration-1",
+              "name": [],
+              "description": [],
+              "prices": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "priceContributions": [
+                {
+                  "amount": "0.00",
+                  "currency": "NOK"
+                }
+              ],
+              "optional": false
+            }
+          ],
+          "entitlementGiven": [],
+          "roundTrip": [],
+          "transferability": []
+        },
+        "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+        "datedServiceJourneys": [
+          {
+            "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+            "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+          }
+        ],
+        "optional": false,
+        "validableElements": [
+          {
+            "id": "VYT:ValidableElement:FlexRefundable",
+            "version": "VYT:Version:VE-FlexRefundable-1",
+            "name": [
+              {
+                "lang": "nob",
+                "value": "FlexRefundable"
+              },
+              {
+                "lang": "eng",
+                "value": "FlexRefundable"
+              }
+            ],
+            "description": [
+              {
+                "lang": "nob",
+                "value": "FlexRefundable"
+              },
+              {
+                "lang": "eng",
+                "value": "FlexRefundable"
+              }
+            ],
+            "prices": [
+              {
+                "amount": "1026.00",
+                "currency": "NOK"
+              }
+            ],
+            "priceContributions": [
+              {
+                "amount": "0.00",
+                "currency": "NOK"
+              }
+            ],
+            "parameters": {
+              "refunds": [],
+              "luggageAllowances": [],
+              "exchanging": [],
+              "reserving": [],
+              "replacing": [],
+              "purchaseWindow": [],
+              "entitlementGiven": [],
+              "roundTrip": [],
+              "transferability": []
+            },
+            "serviceJourneyIds": ["VYG:ServiceJourney:1-242-605-202110302101"],
+            "datedServiceJourneys": [
+              {
+                "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+              }
+            ],
+            "fareStructureElements": [
+              {
+                "id": "VYT:FareStructureElement:FlexRefundableQuotas",
+                "version": "VYT:Version:FSE-FlexRefundable-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "0.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "0.00",
+                    "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "parameters": {
+                  "refunds": [],
+                  "luggageAllowances": [],
+                  "exchanging": [],
+                  "reserving": [],
+                  "replacing": [],
+                  "purchaseWindow": [],
+                  "entitlementGiven": [],
+                  "roundTrip": [],
+                  "transferability": []
+                },
+                "serviceJourneyIds": [
+                  "VYG:ServiceJourney:1-242-605-202110302101"
+                ],
+                "datedServiceJourneys": [
+                  {
+                    "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                    "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+                  }
+                ],
+                "qualityFactor": {
+                  "id": "VYT:FareQuotaFactor:FR0",
+                  "version": "VYT:Version:FSE-FlexRefundable-1",
+                  "name": [],
+                  "description": []
+                },
+                "quotas": [
+                  {
+                    "serviceJourneyId": "VYG:ServiceJourney:1-242-605-202110302101",
+                    "stock": 1191
+                  }
+                ]
+              },
+              {
+                "id": "VYT:FareStructureElement:TEN",
+                "version": "VYT:Version:FSE-TEN-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "1026.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "1026.00",
+                    "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "parameters": {
+                  "refunds": [],
+                  "luggageAllowances": [],
+                  "exchanging": [],
+                  "reserving": [
+                    {
+                      "id": "VYT:Reserving:CompulsoryRes",
+                      "selectableId": "Rl17Q5",
+                      "version": "VYT:Version:RES-CompulsoryRes-1",
+                      "name": [],
+                      "description": [],
+                      "prices": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "priceContributions": [
+                        {
+                          "amount": "0.00",
+                          "currency": "NOK"
+                        }
+                      ],
+                      "typeOfUsageParameter": "ENT:TypeOfUsageParameter:SeatMap",
+                      "optional": false
+                    }
+                  ],
+                  "replacing": [],
+                  "purchaseWindow": [],
+                  "entitlementGiven": [],
+                  "roundTrip": [],
+                  "transferability": []
+                },
+                "serviceJourneyIds": [
+                  "VYG:ServiceJourney:1-242-605-202110302101"
+                ],
+                "datedServiceJourneys": [
+                  {
+                    "datedServiceJourneyId": "ENT:DatedServiceJourney:74432609",
+                    "originalDatedServiceJourneyId": "ENT:DatedServiceJourney:41045853"
+                  }
+                ],
+                "interval": {
+                  "id": "VYT:GeographicalInterval:502TEN",
+                  "version": "VYT:Version:4df1b626-fd0d-44f0-af7a-bff5b278d119",
+                  "name": [],
+                  "description": [],
+                  "distance": 502,
+                  "zones": []
+                },
+                "quotas": []
+              }
+            ]
+          }
+        ],
+        "conditionSummary": {
+          "isRefundable": true,
+          "isExchangeable": true
+        },
+        "discountRight": {
+          "id": "ENT:SaleDiscountRight:ReservasjonsavgifterA",
+          "selectableId": "C5FEhv",
+          "version": "ENT:Version:SDR-Reservasjonsavgifter-1",
+          "name": [
+            {
+              "lang": "nob",
+              "value": "Personalbillettrabatt"
+            },
+            {
+              "lang": "nno",
+              "value": "Personalbillettrabatt"
+            },
+            {
+              "lang": "en",
+              "value": "Personnel Ticket Discount"
+            }
+          ],
+          "description": [],
+          "organisation": {
+            "id": "ENT:Authority:ENT",
+            "privateCode": 1
+          },
+          "prices": [
+            {
+              "amount": "-976.00",
+              "currency": "NOK"
+            }
+          ],
+          "priceContributions": [
+            {
+              "amount": "0.00",
+              "currency": "NOK"
+            }
+          ],
+          "parameters": {
+            "reserving": [
+              {
+                "id": "ENT:Reserving:ReservasjonsavgifterA",
+                "selectableId": "prwD5w",
+                "version": "ENT:Version:SDR-Reservasjonsavgifter-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "50.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "50.00",
+                    "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "optional": false
+              }
+            ],
+            "entitlementGiven": [
+              {
+                "id": "ENT:EntitlementGiven:ReservasjonsavgifterA-VYT-FlexRefundable",
+                "selectableId": "gNkrum",
+                "version": "ENT:Version:SDR-Reservasjonsavgifter-1",
+                "name": [],
+                "description": [],
+                "prices": [
+                  {
+                    "amount": "-1026.00",
+                    "currency": "NOK"
+                  }
+                ],
+                "priceContributions": [
+                  {
+                    "amount": "-1026.00",
+                    "vatGroup": "TRANSPORT_AND_TICKETS_VAT",
+                    "currency": "NOK"
+                  }
+                ],
+                "optional": false
+              }
+            ]
+          },
+          "optional": false,
+          "originatingFromProductId": "ENT:EntitlementProduct:levelA2"
+        },
+        "pointToPointValidity": {
+          "fromPlace": "NSR:StopPlace:337",
+          "toPlace": "NSR:StopPlace:548"
+        }
+      }
+    ]
+  },
+  "travelerMapping": [
+    {
+      "travelerIds": ["3518762"],
+      "maxNumberOfTravelers": 1,
+      "minNumberOfTravelers": 1,
+      "userProfileId": "VYT:UserProfile:Adult",
+      "userProfileVersion": "VYT:Version:UP-Adult-1",
+      "userProfileIds": []
+    }
+  ],
+  "tags": [],
+  "availabilities": [
+    {
+      "serviceJourneyId": "VYG:ServiceJourney:1-242-605-202110302101",
+      "fareProductId": "VYT:PreassignedFareProduct:FlexRefundable",
+      "seatingCapacity": 111,
+      "seatingCompulsory": true,
+      "quotas": [
+        {
+          "stock": 1191,
+          "qualityFactor": {
+            "id": "VYT:FareQuotaFactor:FR0",
+            "version": "VYT:Version:FSE-FlexRefundable-1",
+            "name": [],
+            "description": []
+          },
+          "aggregatedPriceContribution": 0
+        }
+      ]
+    }
+  ]
+}
