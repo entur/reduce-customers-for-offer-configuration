@@ -16,6 +16,7 @@
     "test": "jest",
     "lint": "npx prettier --check *.{md,json} .*.js; xo",
     "lint:fix": "npx prettier --write *.{md,json} .*.js; xo --fix",
+    "publish": "npx np",
     "prepublishOnly": "npx tsc && npm run test",
     "prepare": "husky install"
   },

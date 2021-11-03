@@ -1,10 +1,26 @@
 import {
   extractIdsOfEntitlementProductsRequiredToPurchaseOffer,
+  reduceCustomersForOfferConfiguration,
   removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers
 } from '../source';
 import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json';
 import offerForFlexibleTicketWhichRequiresNoEntitlements from './data/offerForFlexibleTicketWhichRequiresNoEntitlements.json';
 import offerForSeatReservationSeasonTicket from './data/offerForSeatReservationSeasonTicket.json';
+
+describe('reduceCustomersForOfferConfiguration', () => {
+  test('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
+    expect(() =>
+      reduceCustomersForOfferConfiguration(
+        [],
+        // @ts-expect-error
+        offerForFlexibleTicketWhichRequiresEntitlements,
+        {offerId: 'aa004b4e-c539-4fd8-bc1f'}
+      )
+    ).toThrow(
+      'offer.id and offerConfiguration.offerId do not match; they must be the same'
+    );
+  });
+});
 
 describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   test('Returns no IDs when no entitlements are required', () => {

@@ -124,6 +124,12 @@ export function reduceCustomersForOfferConfiguration(
   offer: StrippedOffer,
   offerConfiguration: OfferConfiguration
 ): Customer[] {
+  if (offer.id !== offerConfiguration.offerId) {
+    throw new Error(
+      'offer.id and offerConfiguration.offerId do not match; they must be the same'
+    );
+  }
+
   const selectedCustomers = getCustomersThatMatchSelectedTravellerIds(
     customers,
     offerConfiguration.selectedTravellerIds ?? []
