@@ -1,13 +1,36 @@
+import {
+  OfferSummary,
+  OptionalProduct,
+  PreassignedProduct
+} from './types/offers2Types';
 import {FareProductConfiguration, Offer} from './types/offersTypes';
 import {Customer, OfferConfiguration} from './types/reserveOfferTypes';
 
 /**
- * This is a stripped down version of the Offer type,
+ * This is a stripped down version of the Offer types,
  * containing only the root keys that we need.
  * The hope is that this will lead to fewer updates because
  * the type has changed.
  */
-type StrippedOffer = Pick<Offer, 'id' | 'salesPackageConfig'>;
+type StrippedFareProductConfiguration = Pick<
+  FareProductConfiguration,
+  'selectableId' | 'optional' | 'discountRight'
+>;
+
+type StrippedOffer = Pick<Offer, 'id'> & {
+  salesPackageConfig: {
+    fareProducts: StrippedFareProductConfiguration[];
+  };
+};
+type StrippedPreassignedProduct = Pick<PreassignedProduct, 'discountRight'>;
+type StrippedOptionalProduct = Pick<
+  OptionalProduct,
+  'selectableId' | 'discountRight'
+>;
+
+type StrippedOfferSummary = Pick<OfferSummary, 'id'> & {
+  preassignedProducts: StrippedPreassignedProduct[];
+};
 
 /**
  * Returns a subset of the supplied customer array, containing only the elements
@@ -99,8 +122,8 @@ type StrippedOffer = Pick<Offer, 'id' | 'salesPackageConfig'>;
  *
  * reduceCustomersForOfferConfiguration(
  *   threeCustomersWithLotsOfEntitlements,
- *   offer,
  *   offerConfiguration
+ *   offer,
  * );
  *
  * // [
@@ -121,8 +144,9 @@ type StrippedOffer = Pick<Offer, 'id' | 'salesPackageConfig'>;
  */
 export function reduceCustomersForOfferConfiguration(
   customers: Customer[],
-  offer: StrippedOffer,
-  offerConfiguration: OfferConfiguration
+  offerConfiguration: OfferConfiguration,
+  offer: StrippedOffer | StrippedOfferSummary,
+  optionalProducts?: StrippedOptionalProduct[]
 ): Customer[] {
   if (offer.id !== offerConfiguration.offerId) {
     throw new Error(
@@ -137,8 +161,9 @@ export function reduceCustomersForOfferConfiguration(
 
   const idsOfEntitlementProductsRequiredForPurchase =
     extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+      offerConfiguration.selectableProductIds ?? [],
       offer,
-      offerConfiguration.selectableProductIds ?? []
+      optionalProducts
     );
 
   const customersWithOnlyNecessaryEntitlements = selectedCustomers.map(
@@ -166,19 +191,39 @@ export function getCustomersThatMatchSelectedTravellerIds(
 }
 
 export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-  offer: StrippedOffer,
-  selectableProductIds: string[]
+  selectableProductIds: string[],
+  offer: StrippedOffer | StrippedOfferSummary,
+  optionalProducts: StrippedOptionalProduct[] = []
 ): Set<string> {
   const selectableProductIdsAsSet = new Set(selectableProductIds);
-  const selectedFareProducts = offer.salesPackageConfig.fareProducts.filter(
-    (fareProduct) =>
-      isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
-  );
+
+  const selectedProducts =
+    'salesPackageConfig' in offer
+      ? offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
+          isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
+        )
+      : [
+          ...offer.preassignedProducts,
+          ...optionalProducts.filter((product) =>
+            isOptionalProductToBePurchased(selectableProductIdsAsSet, product)
+          )
+        ];
 
   return new Set(
     compact(
-      selectedFareProducts.map(
-        (fareProduct) => fareProduct.discountRight?.originatingFromProductId
+      selectedProducts.map((product) =>
+        /**
+         * <h2>Heads up</h2>
+         * Currently there originatingFromProductId is not present in DiscountRightSummary.
+         *
+         * @see <a href="https://enturas.atlassian.net/browse/ETU-21645">
+         *  Task for updated status
+         * </a>
+         */
+        product.discountRight &&
+        'originatingFromProductId' in product.discountRight
+          ? product.discountRight.originatingFromProductId
+          : undefined
       )
     )
   );
@@ -186,13 +231,20 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
 
 function isFareProductToBePurchased(
   selectableProductIds: Set<string>,
-  fareProduct: FareProductConfiguration
+  fareProduct: StrippedFareProductConfiguration
 ): boolean {
   const buyingThisProductIsMandatory = !fareProduct.optional;
   return (
     buyingThisProductIsMandatory ||
     selectableProductIds.has(fareProduct.selectableId)
   );
+}
+
+function isOptionalProductToBePurchased(
+  selectableProductIds: Set<string>,
+  product: StrippedOptionalProduct
+): boolean {
+  return selectableProductIds.has(product.selectableId);
 }
 
 /**

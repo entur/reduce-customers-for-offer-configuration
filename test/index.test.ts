@@ -12,9 +12,8 @@ describe('reduceCustomersForOfferConfiguration', () => {
     expect(() =>
       reduceCustomersForOfferConfiguration(
         [],
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        {offerId: 'aa004b4e-c539-4fd8-bc1f'}
+        {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+        offerForFlexibleTicketWhichRequiresEntitlements
       )
     ).toThrow(
       'offer.id and offerConfiguration.offerId do not match; they must be the same'
@@ -26,9 +25,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   test('Returns no IDs when no entitlements are required', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresNoEntitlements,
-        []
+        [],
+        offerForFlexibleTicketWhichRequiresNoEntitlements
       )
     ).toEqual(new Set());
   });
@@ -36,9 +34,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   test('Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        []
+        [],
+        offerForFlexibleTicketWhichRequiresEntitlements
       )
     ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
   });
@@ -46,9 +43,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   test('Returns the IDs required by mandatory products and selectable products when selectableProductIds for products that require entitlements are supplied', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForSeatReservationSeasonTicket,
-        ['94dPB3']
+        ['94dPB3'],
+        offerForSeatReservationSeasonTicket
       )
     ).toEqual(new Set(['ENT:EntitlementProduct:levelA3']));
   });
@@ -56,9 +52,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   test('Returns only the IDs required by mandatory products when only selectableProductIds for products that do not require entitlements are supplied', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        ['IZnkFy']
+        ['IZnkFy'],
+        offerForFlexibleTicketWhichRequiresEntitlements
       )
     ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
   });
