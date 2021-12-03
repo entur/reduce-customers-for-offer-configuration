@@ -1,0 +1,88 @@
+{
+  "id": "ef1787f9-62b2-4407-801c-bdde8e2d813b",
+  "name": "Flex Refunderbar",
+  "description": "",
+  "price": {
+    "amount": "50.00",
+    "currency": "NOK"
+  },
+  "geographicalValidity": {
+    "serviceJourneys": [
+      {
+        "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+        "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+      }
+    ],
+    "pointToPointValidity": {
+      "fromPlace": "NSR:StopPlace:548",
+      "toPlace": "NSR:StopPlace:337"
+    }
+  },
+  "preassignedProducts": [
+    {
+      "id": "VYT:PreassignedFareProduct:FlexRefundable",
+      "version": "VYT:Version:PFP-FlexRefundable-1",
+      "name": "Flex Refunderbar",
+      "description": "- Sete tildeles\\n- Kan endres\\n- Refunderbar",
+      "properties": {
+        "isExchangable": true,
+        "isRefundable": true,
+        "accommodations": [
+          {
+            "serviceJourney": {
+              "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+              "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+            },
+            "accommodation": ["SEATING"]
+          }
+        ],
+        "reservingRequirements": [
+          {
+            "serviceJourney": {
+              "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+              "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+            },
+            "reservingRequirement": "RESERVATIONS_COMPULSORY",
+            "seatMapIsAvailable": true
+          }
+        ],
+        "userProfileId": "VYT:UserProfile:Adult",
+        "userProfileVersion": "VYT:Version:UP-Adult-1",
+        "fareClasses": ["STANDARD_CLASS"]
+      },
+      "geographicalValidity": {
+        "serviceJourneys": [
+          {
+            "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+            "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+          }
+        ],
+        "pointToPointValidity": {
+          "fromPlace": "NSR:StopPlace:548",
+          "toPlace": "NSR:StopPlace:337"
+        }
+      },
+      "discountRight": {
+        "id": "ENT:SaleDiscountRight:ReservasjonsavgifterA",
+        "version": "ENT:Version:SDR-Reservasjonsavgifter-1",
+        "price": {
+          "amount": "-976.00",
+          "currency": "NOK"
+        },
+        "name": "Personalbillettrabatt",
+        "description": "Personalbillettrabatt",
+        "originatingFromProductId": "ENT:EntitlementProduct:levelA2"
+      }
+    }
+  ],
+  "optionalProductsSelectableIds": ["6nbdNy", "vgJSWZ"],
+  "travellerMapping": [
+    {
+      "travellerIds": ["3518762"],
+      "maxNumberOfTravellers": 1,
+      "minNumberOfTravellers": 1,
+      "userType": "ADULT"
+    }
+  ],
+  "available": 200
+}
