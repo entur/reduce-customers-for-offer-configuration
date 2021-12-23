@@ -1,9 +1,9 @@
+import {FareProductConfiguration, Offer} from './__generated__/offers-v1';
 import {
   OfferSummary,
   OptionalProduct,
   PreassignedProduct
-} from './__generated__/offers2Types';
-import {FareProductConfiguration, Offer} from './__generated__/offersTypes';
+} from './__generated__/offers-v2';
 
 /**
  * This is a stripped down version of the Offer types,

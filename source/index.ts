@@ -7,7 +7,7 @@ import {
 import {
   Customer,
   OfferConfiguration
-} from './types/__generated__/reserveOfferTypes';
+} from './types/__generated__/reserve-offer';
 
 /**
  * Returns a subset of the supplied customer array, containing only the elements
