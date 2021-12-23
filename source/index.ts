@@ -10,114 +10,51 @@ import {
 } from './types/__generated__/reserve-offer';
 
 /**
- * Returns a subset of the supplied customer array, containing only the elements
- * necessary to purchase the given offer as described by the supplied
- * offerConfiguration
+ * Returns a subset of the supplied customer array containing only the customers
+ * and entitlements necessary to purchase the offer and selectable products
+ * specified in the offer configuration.
  *
- * Important: Only customers whose customerId is present in
- * OfferConfiguration.selectedTravellerIds will be added. Knowing which IDs to
- * put in each offerConfiguration is often the hard part. See the links to
- * other packages below.
+ * <h2>
+ *   The supplied offer/offer summary determines which entitlements are required
+ * </h2>
+ * The function uses the offer or offer summary as well as the specified optional
+ * products (if supplied) to determine which entitlements are required by the
+ * offer.
  *
- * How it works:
+ * <h2>
+ *   Keeps only the customers present in offerConfiguration.selectedTravellerIds
+ * </h2>
+ * A customer is only kept if a matching customer ID is found in the offer
+ * configuration's selectedTravellerIds.
  *
- * - Keeps only the `customers` whose `customerId` matches an ID found in
- *   `offerConfiguration.selectedTravellerIds`.
- * - Keeps only the entitlements within each customer required to purchase
- *   `offer` with the supplement products specified by
- *   `offerConfiguration.selectableProductIds`
- * - Keeps only the first occurrence of any entitlement product (uniqueness is
- *   determined using a string comparison on the field
- *   `CustomerEntitlement.entitlementProductRef.id`
+ * <h2>Removes all but the first occurrence of an entitlement</h2>
+ * Keeps only the first occurrence of any entitlement product (uniqueness is
+ * determined using a string comparison on the field
+ * `CustomerEntitlement.entitlementProductRef.id`)
  *
- * If you need more control, you can use the functions that this function calls
- * individually.
+ * <h2>Packages that can help with creating the offer configurations</h2>
+ * This package does not help with assigning the correct travellers to an
+ * offerConfiguration, which is often the hard part of preparing an offer for
+ * reservation. The following packages can help with this.
  *
- * @see Recommended alternative for putting selectedTravellerIds in offerConfigurations: <a href="https://www.npmjs.com/package/@entur/create-offer-configurations-from-offer-to-buy">@entur/create-offer-configurations-from-offer-to-buy</a>
- * @see Complicated and buggy alternative for putting selectedTravellerIds in offerConfigurations: <a href="https://www.npmjs.com/package/https://www.npmjs.com/package/@entur/add-customers-to-offer-configurations">@entur/add-customers-to-offer-configurations</a>
- * @example
- * import { reduceCustomersForOfferConfiguration } from "@entur/reduce-customers-for-offer-configuration";
- * import offer from "./test/data/offerForFlexibleTicketWhichRequiresEntitlements.json";
- *
- * const threeCustomersWithLotsOfEntitlements = [
- *   {
- *     customerId: "3538975",
- *     entitlements: [
- *       {
- *         contractId: "72a71456-7508-4148-a25a-b0e9bea8f595",
- *         entitlementProductRef: {
- *           id: "ENT:EntitlementProduct:levelA2",
- *           version: "ENT:Version:EP-levelA2-1",
- *         },
- *       },
- *     ],
- *   },
- *   {
- *     customerId: "9000",
- *     entitlements: [
- *       {
- *         contractId: "72a71456-7508-4148-a25a-b0e9bea8f595",
- *         entitlementProductRef: {
- *           id: "ENT:EntitlementProduct:levelA2",
- *           version: "ENT:Version:EP-levelA2-1",
- *         },
- *       },
- *       {
- *         contractId: "c02f34e7-bb0c-4346-94db-4112c587a67b",
- *         entitlementProductRef: {
- *           id: "ENT:EntitlementProduct:levelB1",
- *           version: "ENT:Version:EP-levelB1-1",
- *         },
- *       },
- *     ],
- *   },
- *   {
- *     customerId: "313",
- *     entitlements: [
- *       {
- *         contractId: "c02f34e7-bb0c-4346-94db-4112c587a67b",
- *         entitlementProductRef: {
- *           id: "ENT:EntitlementProduct:levelB1",
- *           version: "ENT:Version:EP-levelB1-1",
- *         },
- *       },
- *       {
- *         contractId: "c02f34e7-bb0c-4346-94db-98739874897",
- *         entitlementProductRef: {
- *           id: "ENT:EntitlementProduct:levelC1",
- *           version: "ENT:Version:EP-levelC1-1",
- *         },
- *       },
- *     ],
- *   },
- * ];
- *
- * const offerConfiguration = {
- *   offerId: "aa004b4e-c539-4fd8-bc1f-82cc968f5d4d",
- *   selectedTravellerIds: ["3538975", "9000"],
- * };
- *
- * reduceCustomersForOfferConfiguration(
- *   threeCustomersWithLotsOfEntitlements,
- *   offerConfiguration
- *   offer,
- * );
- *
- * // [
- * //   {
- * //     customerId: "3538975",
- * //     entitlements: [
- * //       {
- * //         contractId: "72a71456-7508-4148-a25a-b0e9bea8f595",
- * //         entitlementProductRef: {
- * //           id: "ENT:EntitlementProduct:levelA2",
- * //           version: "ENT:Version:EP-levelA2-1",
- * //         },
- * //       },
- * //     ],
- * //   },
- * //   { customerId: "9000", entitlements: [] },
- * // ]
+ * <ul>
+ *   <li>
+ *     Recommended alternative for putting selectedTravellerIds in
+ *     offerConfigurations:
+ *     <a
+ *       href="https://www.npmjs.com/package/@entur/create-offer-configurations-from-offer-to-buy"
+ *       >@entur/create-offer-configurations-from-offer-to-buy</a
+ *     >
+ *   </li>
+ *   <li>
+ *     Complicated and buggy alternative for putting selectedTravellerIds in
+ *     offerConfigurations:
+ *     <a
+ *       href="https://www.npmjs.com/package/https://www.npmjs.com/package/@entur/add-customers-to-offer-configurations"
+ *       >@entur/add-customers-to-offer-configurations</a
+ *     >
+ *   </li>
+ * </ul>
  */
 export function reduceCustomersForOfferConfiguration(
   customers: Customer[],
