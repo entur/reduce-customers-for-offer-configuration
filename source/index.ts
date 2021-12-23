@@ -1,36 +1,14 @@
 import {
-  OfferSummary,
-  OptionalProduct,
-  PreassignedProduct
-} from './types/offers2Types';
-import {FareProductConfiguration, Offer} from './types/offersTypes';
-import {Customer, OfferConfiguration} from './types/reserveOfferTypes';
-
-/**
- * This is a stripped down version of the Offer types,
- * containing only the root keys that we need.
- * The hope is that this will lead to fewer updates because
- * the type has changed.
- */
-type StrippedFareProductConfiguration = Pick<
-  FareProductConfiguration,
-  'selectableId' | 'optional' | 'discountRight'
->;
-
-type StrippedOffer = Pick<Offer, 'id'> & {
-  salesPackageConfig: {
-    fareProducts: StrippedFareProductConfiguration[];
-  };
-};
-type StrippedPreassignedProduct = Pick<PreassignedProduct, 'discountRight'>;
-type StrippedOptionalProduct = Pick<
-  OptionalProduct,
-  'selectableId' | 'discountRight'
->;
-
-type StrippedOfferSummary = Pick<OfferSummary, 'id'> & {
-  preassignedProducts: StrippedPreassignedProduct[];
-};
+  StrippedFareProductConfiguration,
+  StrippedOffer,
+  StrippedOfferSummary,
+  StrippedOptionalProduct,
+  StrippedPreassignedProduct
+} from './types';
+import {
+  Customer,
+  OfferConfiguration
+} from './types/__generated__/reserveOfferTypes';
 
 /**
  * Returns a subset of the supplied customer array, containing only the elements
@@ -204,7 +182,11 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
     : extractSelectedProductsFromOffer(selectableProductIds, offer);
 
   return new Set(
-    compact(selectedProducts.map((product) => extractOriginatingFromProductId(product)))
+    compact(
+      selectedProducts.map((product) =>
+        extractOriginatingFromProductId(product)
+      )
+    )
   );
 }
 

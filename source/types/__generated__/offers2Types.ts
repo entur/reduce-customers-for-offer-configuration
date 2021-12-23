@@ -78,9 +78,7 @@ export interface OptionalProduct {
 export interface CappedDiscountOption {
   cappedDiscountRightRef: RefType;
   cappedDiscountRuleRef: RefType;
-
-  /** An alternative is based on previous transactions might have a discount at the expense of setting the start date in the past. */
-  alternatives?: CappingAlternative;
+  alternatives?: CappingAlternative[];
 }
 
 /**
@@ -205,7 +203,7 @@ export interface ServiceJourneySummary {
  * Summary of properties for a product
  */
 export interface PropertiesSummary {
-  isExchangable?: boolean;
+  isExchangeable?: boolean;
   isRefundable?: boolean;
   accommodations?: AccommodationForServiceJourney[];
   luggageAllowances?: LuggageAllowance[];
@@ -219,6 +217,9 @@ export interface PropertiesSummary {
   durationType?: string;
   group?: GroupSummary;
   fareClasses?: FareClassEnum[];
+
+  /** Representation of a repeatable ticket, with an optional duration for each instance and an amount of times the ticket can be used */
+  carnet?: Carnet;
 }
 
 export enum AccommodationFacilityEnum {
@@ -296,6 +297,20 @@ export enum LuggageAllowance {
   GAME = "GAME",
   MOTORCYCLE = "MOTORCYCLE",
   OTHER = "OTHER",
+}
+
+/**
+ * Representation of a repeatable ticket, with an optional duration for each instance and an amount of times the ticket can be used
+ */
+export interface Carnet {
+  /** @example 10 */
+  amount: number;
+
+  /**
+   * @format duration
+   * @example PT1H30M
+   */
+  duration?: string;
 }
 
 /**
@@ -1650,9 +1665,9 @@ export interface GeoIntervalData {
 }
 
 /**
- * A request used to search for fare products between railway stations
+ * A request used to search for fare products between stop places
  */
-export interface SearchRailStationsRequest {
+export interface SearchStopPlacesRequest {
   /**
    * The id of the origin stop place.
    * @example NSR:StopPlace:548
