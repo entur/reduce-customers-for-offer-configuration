@@ -6,66 +6,63 @@ import offerForFlexibleTicketWhichRequiresNoEntitlements from './data/offerForFl
 import offerForSeatReservationSeasonTicket from './data/offerForSeatReservationSeasonTicket.json';
 
 describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
-  test('Returns no IDs when no entitlements are required', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        [],
-        offerForFlexibleTicketWhichRequiresNoEntitlements
-      )
-    ).toEqual(new Set());
+  describe('Returns no IDs when no entitlements are required', () => {
+    test('Offers v1', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          [],
+          offerForFlexibleTicketWhichRequiresNoEntitlements
+        )
+      ).toEqual(new Set());
+    });
+
+    test('Offers v2', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          [],
+          offer2ForFlexibleTicketWhichRequiresNoEntitlements
+        )
+      ).toEqual(new Set());
+    });
   });
 
-  test('Offer 2.0 Returns no IDs when no entitlements are required', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        [],
-        offer2ForFlexibleTicketWhichRequiresNoEntitlements
-      )
-    ).toEqual(new Set());
+  describe('Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
+    test('Offers v1', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          [],
+          offerForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
+    });
+
+    test('Offers v2', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          [],
+          offer2ForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
+    });
   });
 
-  test('Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        [],
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
-  });
+  describe('Returns the IDs required by mandatory products and selectable products when selectableProductIds for products that require entitlements are supplied', () => {
+    test('Offers v1', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          ['94dPB3'],
+          offerForSeatReservationSeasonTicket
+        )
+      ).toEqual(new Set(['ENT:EntitlementProduct:levelA3']));
+    });
 
-  test('Offer 2.0 Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        [],
-        offer2ForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
-  });
-
-  test('Returns the IDs required by mandatory products and selectable products when selectableProductIds for products that require entitlements are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        ['94dPB3'],
-        offerForSeatReservationSeasonTicket
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA3']));
-  });
-
-  test('Returns only the IDs required by mandatory products when only selectableProductIds for products that do not require entitlements are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        ['IZnkFy'],
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
-  });
-
-  test('Offer 2.0 Returns only the IDs required by mandatory products when only selectableProductIds for products that do not require entitlements are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        ['6nbdNy'],
-        offer2ForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
+    test('Offers v2', () => {
+      expect(
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+          ['6nbdNy'],
+          offer2ForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
+    });
   });
 });
