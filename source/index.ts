@@ -195,19 +195,13 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
   offer: StrippedOffer | StrippedOfferSummary,
   optionalProducts: StrippedOptionalProduct[] = []
 ): Set<string> {
-  const selectableProductIdsAsSet = new Set(selectableProductIds);
-
-  const selectedProducts =
-    'salesPackageConfig' in offer
-      ? offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
-          isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
-        )
-      : [
-          ...offer.preassignedProducts,
-          ...optionalProducts.filter((product) =>
-            isOptionalProductToBePurchased(selectableProductIdsAsSet, product)
-          )
-        ];
+  const selectedProducts = isOfferSummary(offer)
+    ? extractSelectedProductsFromOfferSummary(
+        selectableProductIds,
+        offer,
+        optionalProducts
+      )
+    : extractSelectedProductsFromOffer(selectableProductIds, offer);
 
   return new Set(
     compact(
@@ -226,6 +220,36 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
           : undefined
       )
     )
+  );
+}
+
+function isOfferSummary(
+  offer: StrippedOffer | StrippedOfferSummary
+): offer is StrippedOfferSummary {
+  return !('salesPackageConfig' in offer);
+}
+
+function extractSelectedProductsFromOfferSummary(
+  selectableProductIds: string[],
+  offer: StrippedOfferSummary,
+  optionalProducts: StrippedOptionalProduct[]
+): StrippedOptionalProduct[] | StrippedPreassignedProduct[] {
+  const selectableProductIdsAsSet = new Set(selectableProductIds);
+  return [
+    ...offer.preassignedProducts,
+    ...optionalProducts.filter((product) =>
+      isOptionalProductToBePurchased(selectableProductIdsAsSet, product)
+    )
+  ];
+}
+
+function extractSelectedProductsFromOffer(
+  selectableProductIds: string[],
+  offer: StrippedOffer
+): StrippedFareProductConfiguration[] {
+  const selectableProductIdsAsSet = new Set(selectableProductIds);
+  return offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
+    isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
   );
 }
 
