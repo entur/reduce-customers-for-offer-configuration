@@ -26,7 +26,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: "source/types/*.ts",
+      files: "source/types/__generated__/*.ts",
       rules: { "unicorn/no-abusive-eslint-disable": "off" },
     },
     {

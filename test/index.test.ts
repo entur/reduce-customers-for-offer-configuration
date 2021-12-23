@@ -1,66 +1,35 @@
 import {
-  extractIdsOfEntitlementProductsRequiredToPurchaseOffer,
   reduceCustomersForOfferConfiguration,
   removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers
 } from '../source';
+import offer2ForFlexibleTicketWhichRequiresEntitlements from './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json';
 import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json';
-import offerForFlexibleTicketWhichRequiresNoEntitlements from './data/offerForFlexibleTicketWhichRequiresNoEntitlements.json';
-import offerForSeatReservationSeasonTicket from './data/offerForSeatReservationSeasonTicket.json';
 
 describe('reduceCustomersForOfferConfiguration', () => {
-  test('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
-    expect(() =>
-      reduceCustomersForOfferConfiguration(
-        [],
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        {offerId: 'aa004b4e-c539-4fd8-bc1f'}
-      )
-    ).toThrow(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
-    );
-  });
-});
+  describe('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
+    test('Offers v1', () => {
+      expect(() =>
+        reduceCustomersForOfferConfiguration(
+          [],
+          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+          offerForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toThrow(
+        'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      );
+    });
 
-describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
-  test('Returns no IDs when no entitlements are required', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresNoEntitlements,
-        []
-      )
-    ).toEqual(new Set());
-  });
-
-  test('Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        []
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
-  });
-
-  test('Returns the IDs required by mandatory products and selectable products when selectableProductIds for products that require entitlements are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForSeatReservationSeasonTicket,
-        ['94dPB3']
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA3']));
-  });
-
-  test('Returns only the IDs required by mandatory products when only selectableProductIds for products that do not require entitlements are supplied', () => {
-    expect(
-      extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-        // @ts-expect-error
-        offerForFlexibleTicketWhichRequiresEntitlements,
-        ['IZnkFy']
-      )
-    ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
+    test('Offers v2', () => {
+      expect(() =>
+        reduceCustomersForOfferConfiguration(
+          [],
+          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+          offer2ForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toThrow(
+        'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      );
+    });
   });
 });
 
