@@ -204,22 +204,7 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
     : extractSelectedProductsFromOffer(selectableProductIds, offer);
 
   return new Set(
-    compact(
-      selectedProducts.map((product) =>
-        /**
-         * <h2>Heads up</h2>
-         * Currently there originatingFromProductId is not present in DiscountRightSummary.
-         *
-         * @see <a href="https://enturas.atlassian.net/browse/ETU-21645">
-         *  Task for updated status
-         * </a>
-         */
-        product.discountRight &&
-        'originatingFromProductId' in product.discountRight
-          ? product.discountRight.originatingFromProductId
-          : undefined
-      )
-    )
+    compact(selectedProducts.map((product) => extractOriginatingFromProductId(product)))
   );
 }
 
@@ -269,6 +254,23 @@ function isOptionalProductToBePurchased(
   product: StrippedOptionalProduct
 ): boolean {
   return selectableProductIds.has(product.selectableId);
+}
+
+/**
+ * Extracts the ID of the entitlement product which is required to purchase a given product
+ *
+ * Currently originatingFromProductId is not present in DiscountRightSummary,
+ * but will be implemented by ETU-21645.
+ *
+ * @see <a href="https://enturas.atlassian.net/browse/ETU-21645">ETU-21645 for status updates</a>
+ */
+function extractOriginatingFromProductId(
+  product: StrippedPreassignedProduct | StrippedFareProductConfiguration
+) {
+  return product.discountRight &&
+    'originatingFromProductId' in product.discountRight
+    ? product.discountRight.originatingFromProductId
+    : undefined;
 }
 
 /**
