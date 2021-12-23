@@ -6,27 +6,30 @@ import offer2ForFlexibleTicketWhichRequiresEntitlements from './data/offer2ForFl
 import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json';
 
 describe('reduceCustomersForOfferConfiguration', () => {
-  test('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
-    expect(() =>
-      reduceCustomersForOfferConfiguration(
-        [],
-        {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toThrow(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
-    );
-  });
-  test('Offer 2.0 Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
-    expect(() =>
-      reduceCustomersForOfferConfiguration(
-        [],
-        {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-        offer2ForFlexibleTicketWhichRequiresEntitlements
-      )
-    ).toThrow(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
-    );
+  describe('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
+    test('Offers v1', () => {
+      expect(() =>
+        reduceCustomersForOfferConfiguration(
+          [],
+          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+          offerForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toThrow(
+        'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      );
+    });
+
+    test('Offers v2', () => {
+      expect(() =>
+        reduceCustomersForOfferConfiguration(
+          [],
+          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+          offer2ForFlexibleTicketWhichRequiresEntitlements
+        )
+      ).toThrow(
+        'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      );
+    });
   });
 });
 
