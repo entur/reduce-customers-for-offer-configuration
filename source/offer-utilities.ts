@@ -78,19 +78,14 @@ function isOptionalProductToBePurchased(
 
 /**
  * Extracts the ID of the entitlement product which is required to purchase a given product
- *
- * Currently originatingFromProductId is not present in DiscountRightSummary,
- * but will be implemented by ETU-21645.
- *
- * @see <a href="https://enturas.atlassian.net/browse/ETU-21645">ETU-21645 for status updates</a>
  */
 function extractOriginatingFromProductId(
-  product: StrippedPreassignedProduct | StrippedFareProductConfiguration
+  product:
+    | StrippedPreassignedProduct
+    | StrippedOptionalProduct
+    | StrippedFareProductConfiguration
 ) {
-  return product.discountRight &&
-    'originatingFromProductId' in product.discountRight
-    ? product.discountRight.originatingFromProductId
-    : undefined;
+  return product.discountRight?.originatingFromProductId;
 }
 
 function compact<T>(array?: Array<T | false | 0 | null | undefined>): T[] {
