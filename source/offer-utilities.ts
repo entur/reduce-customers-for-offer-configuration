@@ -21,8 +21,8 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
 
   return new Set(
     compact(
-      selectedProducts.map((product) =>
-        extractOriginatingFromProductId(product)
+      selectedProducts.map(
+        (product) => product.discountRight?.originatingFromProductId
       )
     )
   );
@@ -74,18 +74,6 @@ function isOptionalProductToBePurchased(
   product: StrippedOptionalProduct
 ): boolean {
   return selectableProductIds.has(product.selectableId);
-}
-
-/**
- * Extracts the ID of the entitlement product which is required to purchase a given product
- */
-function extractOriginatingFromProductId(
-  product:
-    | StrippedPreassignedProduct
-    | StrippedOptionalProduct
-    | StrippedFareProductConfiguration
-) {
-  return product.discountRight?.originatingFromProductId;
 }
 
 function compact<T>(array?: Array<T | false | 0 | null | undefined>): T[] {
