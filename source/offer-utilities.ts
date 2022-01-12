@@ -21,8 +21,8 @@ export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
 
   return new Set(
     compact(
-      selectedProducts.map((product) =>
-        extractOriginatingFromProductId(product)
+      selectedProducts.map(
+        (product) => product.discountRight?.originatingFromProductId
       )
     )
   );
@@ -38,7 +38,7 @@ function extractSelectedProductsFromOfferSummary(
   selectableProductIds: string[],
   offer: StrippedOfferSummary,
   optionalProducts: StrippedOptionalProduct[]
-): StrippedOptionalProduct[] | StrippedPreassignedProduct[] {
+): Array<StrippedOptionalProduct | StrippedPreassignedProduct> {
   const selectableProductIdsAsSet = new Set(selectableProductIds);
   return [
     ...offer.preassignedProducts,
@@ -74,23 +74,6 @@ function isOptionalProductToBePurchased(
   product: StrippedOptionalProduct
 ): boolean {
   return selectableProductIds.has(product.selectableId);
-}
-
-/**
- * Extracts the ID of the entitlement product which is required to purchase a given product
- *
- * Currently originatingFromProductId is not present in DiscountRightSummary,
- * but will be implemented by ETU-21645.
- *
- * @see <a href="https://enturas.atlassian.net/browse/ETU-21645">ETU-21645 for status updates</a>
- */
-function extractOriginatingFromProductId(
-  product: StrippedPreassignedProduct | StrippedFareProductConfiguration
-) {
-  return product.discountRight &&
-    'originatingFromProductId' in product.discountRight
-    ? product.discountRight.originatingFromProductId
-    : undefined;
 }
 
 function compact<T>(array?: Array<T | false | 0 | null | undefined>): T[] {
