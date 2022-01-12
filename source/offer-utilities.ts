@@ -38,7 +38,7 @@ function extractSelectedProductsFromOfferSummary(
   selectableProductIds: string[],
   offer: StrippedOfferSummary,
   optionalProducts: StrippedOptionalProduct[]
-): StrippedOptionalProduct[] | StrippedPreassignedProduct[] {
+): Array<StrippedOptionalProduct | StrippedPreassignedProduct> {
   const selectableProductIdsAsSet = new Set(selectableProductIds);
   return [
     ...offer.preassignedProducts,
