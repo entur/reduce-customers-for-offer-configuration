@@ -1,6 +1,7 @@
 {
   "name": "@entur/reduce-customers-for-offer-configuration",
   "version": "2.0.0",
+  "type": "module",
   "description": "Returns a subset of the supplied customer array, containing only the elements necessary to purchase the given offer as described by the supplied offerConfiguration",
   "main": "dist/index.js",
   "repository": "https://github.com/entur/reduce-customers-for-offer-configuration",
@@ -14,8 +15,8 @@
     "build": "rm -rf dist && npx tsc",
     "update-types": "npx swagger-typescript-api --path https://api.staging.entur.io/sales/v1/offers/api-docs/swagger.json --output source/types/__generated__ -n offers-v1.ts --no-client && npx swagger-typescript-api --path https://api.staging.entur.io/offers/v2-beta/api-docs/swagger.json --output source/types/__generated__ -n offers-v2.ts --no-client && npx swagger-typescript-api --path https://api.staging.entur.io/api-docs/reserve-offer?group=public --output source/types/__generated__ -n reserve-offer.ts --no-client",
     "test": "jest",
-    "lint": "npx prettier --check *.{md,json} .*.js; xo",
-    "lint:fix": "npx prettier --write *.{md,json} .*.js; xo --fix",
+    "lint": "npx prettier --check *.{md,json} .*.cjs; xo",
+    "lint:fix": "npx prettier --write *.{md,json} .*.cjs; xo --fix",
     "publish": "npx np",
     "prepublishOnly": "npx tsc && npm run test",
     "prepare": "husky install"
