@@ -3,7 +3,11 @@
   "version": "2.0.0",
   "type": "module",
   "description": "Returns a subset of the supplied customer array, containing only the elements necessary to purchase the given offer as described by the supplied offerConfiguration",
-  "main": "dist/index.js",
+  "main": "dist/esm/index.js",
+  "exports": {
+    "import": "./dist/esm/index.js",
+    "require": "./dist/commonjs/index.cjs"
+  },
   "repository": "https://github.com/entur/reduce-customers-for-offer-configuration",
   "author": "Eirik Vageskar <eirik.vageskar@knowit.no>",
   "license": "MIT",
@@ -12,13 +16,15 @@
   ],
   "homepage": "https://www.npmjs.com/package/@entur/reduce-customers-for-offer-configuration",
   "scripts": {
-    "build": "rm -rf dist && npx tsc",
+    "build": "rm -rf dist && npm run build:commonjs && npm run build:esm",
+    "build:esm": "tsc --outDir dist/esm",
+    "build:commonjs": "./scripts/build-commonjs.sh",
     "update-types": "npx swagger-typescript-api --path https://api.staging.entur.io/sales/v1/offers/api-docs/swagger.json --output source/types/__generated__ -n offers-v1.ts --no-client && npx swagger-typescript-api --path https://api.staging.entur.io/offers/v2-beta/api-docs/swagger.json --output source/types/__generated__ -n offers-v2.ts --no-client && npx swagger-typescript-api --path https://api.staging.entur.io/api-docs/reserve-offer?group=public --output source/types/__generated__ -n reserve-offer.ts --no-client",
     "test": "jest",
     "lint": "npx prettier --check *.{md,json} .*.cjs; xo",
     "lint:fix": "npx prettier --write *.{md,json} .*.cjs; xo --fix",
     "publish": "npx np",
-    "prepublishOnly": "npx tsc && npm run test",
+    "prepublishOnly": "npm run build && npm run test",
     "prepare": "husky install"
   },
   "devDependencies": {
