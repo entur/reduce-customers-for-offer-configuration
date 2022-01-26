@@ -24,7 +24,7 @@
     "lint": "npx prettier --check *.{md,json} .*.cjs; xo",
     "lint:fix": "npx prettier --write *.{md,json} .*.cjs; xo --fix",
     "publish": "npx np",
-    "prepublishOnly": "npx tsc && npm run test",
+    "prepublishOnly": "npm run build && npm run test",
     "prepare": "husky install"
   },
   "devDependencies": {
