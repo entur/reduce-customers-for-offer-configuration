@@ -277,6 +277,11 @@ export interface OffersError {
 }
 
 /**
+ * The fare class
+ */
+export type FareClassEnum = object;
+
+/**
  * Reference to a Fare Structure Element and its configuration.
  */
 export interface FareStructureElementConfiguration {
@@ -742,6 +747,12 @@ export interface RecommendationV2 {
   typeOfRecommendation: TypeOfRecommendationEnumV2;
   durationType?: DurationEnum;
 
+  /** The fare class */
+  fareClass?: FareClassEnum;
+
+  /** The type of accommodation */
+  facilitySet?: AccommodationFacilityForRecommendationsEnum;
+
   /** Recommendations filtered by type of flex */
   offersToBuy?: OfferToBuy[];
 
@@ -1121,6 +1132,11 @@ export interface PointToPointValidity {
    */
   toPlace?: string;
 }
+
+/**
+ * The type of accommodation
+ */
+export type AccommodationFacilityForRecommendationsEnum = object;
 
 /**
  * A set of recommendations for a type of recommendation and fare classes with facility set.
