@@ -1,67 +1,72 @@
-import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from '../source/offer-utilities';
-import offer2ForFlexibleTicketWhichRequiresEntitlements from './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json';
-import offer2ForFlexibleTicketWhichRequiresNoEntitlements from './data/offer2ForFlexibleTicketWhichRequiresNoEntitlements.json';
-import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json';
-import offerForFlexibleTicketWhichRequiresNoEntitlements from './data/offerForFlexibleTicketWhichRequiresNoEntitlements.json';
-import offerForSeatReservationSeasonTicket from './data/offerForSeatReservationSeasonTicket.json';
+import {expect} from 'expect';
+
+import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from '../source/offer-utilities.js';
+import {StrippedOffer} from '../source/types/index.js';
+import {readJSON} from './helper';
 
 describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
   describe('Returns no IDs when no entitlements are required', () => {
-    test('Offers v1', () => {
+    it('Offers v1', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offerForFlexibleTicketWhichRequiresNoEntitlements.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          [],
-          offerForFlexibleTicketWhichRequiresNoEntitlements
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer([], data)
       ).toEqual(new Set());
     });
 
-    test('Offers v2', () => {
+    it('Offers v2', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offer2ForFlexibleTicketWhichRequiresNoEntitlements.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          [],
-          offer2ForFlexibleTicketWhichRequiresNoEntitlements
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer([], data)
       ).toEqual(new Set());
     });
   });
 
   describe('Returns the IDs required by mandatory products when no selectableProductIds are supplied', () => {
-    test('Offers v1', () => {
+    it('Offers v1', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offerForFlexibleTicketWhichRequiresEntitlements.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          [],
-          offerForFlexibleTicketWhichRequiresEntitlements
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer([], data)
       ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
     });
 
-    test('Offers v2', () => {
+    it('Offers v2', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          [],
-          offer2ForFlexibleTicketWhichRequiresEntitlements
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer([], data)
       ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
     });
   });
 
   describe('Returns the IDs required by mandatory products and selectable products when selectableProductIds for products that require entitlements are supplied', () => {
-    test('Offers v1', () => {
+    it('Offers v1', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offerForSeatReservationSeasonTicket.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          ['94dPB3'],
-          offerForSeatReservationSeasonTicket
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(['94dPB3'], data)
       ).toEqual(new Set(['ENT:EntitlementProduct:levelA3']));
     });
 
-    test('Offers v2', () => {
+    it('Offers v2', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json'
+      );
+
       expect(
-        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-          ['6nbdNy'],
-          offer2ForFlexibleTicketWhichRequiresEntitlements
-        )
+        extractIdsOfEntitlementProductsRequiredToPurchaseOffer(['6nbdNy'], data)
       ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
     });
   });

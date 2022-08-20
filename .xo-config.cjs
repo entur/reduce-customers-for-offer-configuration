@@ -5,18 +5,9 @@ const SORT_KEYS_RULES = {
 };
 
 module.exports = {
-  settings: {
-    jest: {
-      version: require("jest/package.json").version,
-    },
-  },
   prettier: true,
   plugins: ["jsdoc", "simple-import-sort", "sort-keys"],
-  extends: [
-    "plugin:jsdoc/recommended",
-    "plugin:jest/recommended",
-    "plugin:jest/style",
-  ],
+  extends: ["plugin:jsdoc/recommended"],
   rules: {
     ...SORT_KEYS_RULES,
     ...getJsdocRules(true),
