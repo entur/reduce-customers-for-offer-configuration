@@ -1,13 +1,13 @@
-import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from './offer-utilities';
+import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from './offer-utilities.js';
+import {
+  Customer,
+  OfferConfiguration
+} from './types/__generated__/reserve-offer.js';
 import {
   StrippedOffer,
   StrippedOfferSummary,
   StrippedOptionalProduct
-} from './types';
-import {
-  Customer,
-  OfferConfiguration
-} from './types/__generated__/reserve-offer';
+} from './types/index.js';
 
 /**
  * Returns a subset of the supplied customer array containing only the customers
