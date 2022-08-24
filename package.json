@@ -1,6 +1,6 @@
 {
   "name": "@entur/reduce-customers-for-offer-configuration",
-  "version": "2.1.2",
+  "version": "2.2.0",
   "type": "module",
   "description": "Returns a subset of the supplied customer array, containing only the elements necessary to purchase the given offer as described by the supplied offerConfiguration",
   "main": "dist/esm/index.js",
