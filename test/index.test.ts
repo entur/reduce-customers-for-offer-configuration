@@ -1,30 +1,38 @@
+import {expect} from 'expect';
+
 import {
   reduceCustomersForOfferConfiguration,
   removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers
-} from '../source';
-import offer2ForFlexibleTicketWhichRequiresEntitlements from './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json';
-import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json';
+} from '../source/index.js';
+import {StrippedOffer} from '../source/types/index.js';
+import {readJSON} from './helper';
 
 describe('reduceCustomersForOfferConfiguration', () => {
   describe('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
-    test('Offers v1', () => {
+    it('Offers v1', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offerForFlexibleTicketWhichRequiresEntitlements.json'
+      );
       expect(() =>
         reduceCustomersForOfferConfiguration(
           [],
           {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-          offerForFlexibleTicketWhichRequiresEntitlements
+          data
         )
       ).toThrow(
         'offer.id and offerConfiguration.offerId do not match; they must be the same'
       );
     });
 
-    test('Offers v2', () => {
+    it('Offers v2', async () => {
+      const data = await readJSON<StrippedOffer>(
+        './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json'
+      );
       expect(() =>
         reduceCustomersForOfferConfiguration(
           [],
           {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-          offer2ForFlexibleTicketWhichRequiresEntitlements
+          data
         )
       ).toThrow(
         'offer.id and offerConfiguration.offerId do not match; they must be the same'
@@ -35,13 +43,13 @@ describe('reduceCustomersForOfferConfiguration', () => {
 
 describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
   describe('Cases where input should equal output', () => {
-    test('No customers', () => {
+    it('No customers', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([])
       ).toEqual([]);
     });
 
-    test('One customer, one entitlement', () => {
+    it('One customer, one entitlement', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -73,7 +81,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
       ]);
     });
 
-    test('One customer, two entitlements', () => {
+    it('One customer, two entitlements', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -121,7 +129,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
   });
 
   describe('Removes subsequent occurrences of entitlements with identical Entitlement.entitlementProductRef.id', () => {
-    test('Removes subsequent occurrences from within the same customer', () => {
+    it('Removes subsequent occurrences from within the same customer', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -160,7 +168,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
       ]);
     });
 
-    test('Removes subsequent occurrences from subsequent customers', () => {
+    it('Removes subsequent occurrences from subsequent customers', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -208,7 +216,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
       ]);
     });
 
-    test('Removes subsequent occurrences even if Entitlement.entitlementProductRef.version is different', () => {
+    it('Removes subsequent occurrences even if Entitlement.entitlementProductRef.version is different', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -256,7 +264,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
       ]);
     });
 
-    test('Removes subsequent occurrences even if Entitlement.contractId is different', () => {
+    it('Removes subsequent occurrences even if Entitlement.contractId is different', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -306,7 +314,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
   });
 
   describe('Leaves first cases of new entitlements (unseen Entitlement.entitlementProductRef.id) alone', () => {
-    test('Leaves first occurrences within the same customer', () => {
+    it('Leaves first occurrences within the same customer', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {
@@ -366,7 +374,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
       ]);
     });
 
-    test('Removes subsequent occurrences from subsequent customers', () => {
+    it('Removes subsequent occurrences from subsequent customers', () => {
       expect(
         removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([
           {

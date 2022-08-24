@@ -4,7 +4,7 @@ import {
   StrippedOfferSummary,
   StrippedOptionalProduct,
   StrippedPreassignedProduct
-} from './types';
+} from './types/index.js';
 
 export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
   selectableProductIds: string[],
