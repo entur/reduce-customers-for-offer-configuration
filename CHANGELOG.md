@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.2 (2023-05-11)
+
+Changed from Offers 2.0 beta to release swagger url
+
 ## 2.1.1 (2023-05-11)
 
 Regenerate types.
