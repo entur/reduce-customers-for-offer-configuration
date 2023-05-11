@@ -4,40 +4,19 @@ import {
   reduceCustomersForOfferConfiguration,
   removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers
 } from '../source/index.js';
-import {StrippedOffer} from '../source/types/index.js';
-import {readJSON} from './helper';
+import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json' assert {type: 'json'};
 
 describe('reduceCustomersForOfferConfiguration', () => {
   describe('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
-    it('Offers v1', async () => {
-      const data = await readJSON<StrippedOffer>(
-        './data/offerForFlexibleTicketWhichRequiresEntitlements.json'
-      );
-      expect(() =>
-        reduceCustomersForOfferConfiguration(
-          [],
-          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-          data
-        )
-      ).toThrow(
-        'offer.id and offerConfiguration.offerId do not match; they must be the same'
-      );
-    });
-
-    it('Offers v2', async () => {
-      const data = await readJSON<StrippedOffer>(
-        './data/offer2ForFlexibleTicketWhichRequiresEntitlements.json'
-      );
-      expect(() =>
-        reduceCustomersForOfferConfiguration(
-          [],
-          {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-          data
-        )
-      ).toThrow(
-        'offer.id and offerConfiguration.offerId do not match; they must be the same'
-      );
-    });
+    expect(() =>
+      reduceCustomersForOfferConfiguration(
+        [],
+        {offerId: 'aa004b4e-c539-4fd8-bc1f'},
+        offerForFlexibleTicketWhichRequiresEntitlements
+      )
+    ).toThrow(
+      'offer.id and offerConfiguration.offerId do not match; they must be the same'
+    );
   });
 });
 
