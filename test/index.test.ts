@@ -1,4 +1,4 @@
-import {expect} from 'expect';
+import {describe, expect, it} from 'vitest';
 
 import {
   reduceCustomersForOfferConfiguration,
@@ -7,7 +7,7 @@ import {
 import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json' assert {type: 'json'};
 
 describe('reduceCustomersForOfferConfiguration', () => {
-  describe('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
+  it('Throws error if offerConfiguration.offerId is not the same as offer.id', () => {
     expect(() =>
       reduceCustomersForOfferConfiguration(
         [],
