@@ -1,9 +1,10 @@
-import {FareProductConfiguration, Offer} from './__generated__/offers-v1.js';
 import {
+  FareProductConfiguration,
+  Offer,
   OfferSummary,
   OptionalProduct,
   PreassignedProduct
-} from './__generated__/offers-v2.js';
+} from './__generated__/offers';
 
 /**
  * This is a stripped down version of the Offer types,
