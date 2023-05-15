@@ -1,6 +1,6 @@
 # Changelog
 
-## Next version (????-??-??)
+## 3.0.0 (2023-05-15)
 
 - BREAKING: Drop support for Offers v1.
 
