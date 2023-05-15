@@ -1,9 +1,11 @@
 {
-  "extends": "@sindresorhus/tsconfig",
-  "compilerOptions": {
-    "outDir": "dist",
-    "module": "ESNext",
-    "resolveJsonModule": true
-  },
-  "include": ["source"]
+	"compilerOptions": {
+		"esModuleInterop": true,
+		"lib": ["ESNext"],
+		"module": "ESNext",
+		"moduleResolution": "NodeNext",
+		"outDir": "dist",
+		"resolveJsonModule": true
+	},
+	"include": ["source"]
 }

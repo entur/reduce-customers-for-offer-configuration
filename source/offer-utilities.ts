@@ -1,82 +1,84 @@
 import {
-  StrippedFareProductConfiguration,
-  StrippedOffer,
-  StrippedOfferSummary,
-  StrippedOptionalProduct,
-  StrippedPreassignedProduct
-} from './types/index.js';
+	StrippedFareProductConfiguration,
+	StrippedOffer,
+	StrippedOfferSummary,
+	StrippedOptionalProduct,
+	StrippedPreassignedProduct,
+} from "./types/index.js";
 
 export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-  selectableProductIds: string[],
-  offer: StrippedOffer | StrippedOfferSummary,
-  optionalProducts: StrippedOptionalProduct[] = []
+	selectableProductIds: string[],
+	offer: StrippedOffer | StrippedOfferSummary,
+	optionalProducts: StrippedOptionalProduct[] = [],
 ): Set<string> {
-  const selectedProducts = isOfferSummary(offer)
-    ? extractSelectedProductsFromOfferSummary(
-        selectableProductIds,
-        offer,
-        optionalProducts
-      )
-    : extractSelectedProductsFromOffer(selectableProductIds, offer);
+	const selectedProducts = isOfferSummary(offer)
+		? extractSelectedProductsFromOfferSummary(
+				selectableProductIds,
+				offer,
+				optionalProducts,
+		  )
+		: extractSelectedProductsFromOffer(selectableProductIds, offer);
 
-  return new Set(
-    compact(
-      selectedProducts.map(
-        (product) => product.discountRight?.originatingFromProductId
-      )
-    )
-  );
+	return new Set(
+		compact(
+			selectedProducts.map(
+				(product) => product.discountRight?.originatingFromProductId,
+			),
+		),
+	);
 }
 
 function isOfferSummary(
-  offer: StrippedOffer | StrippedOfferSummary
+	offer: StrippedOffer | StrippedOfferSummary,
 ): offer is StrippedOfferSummary {
-  return !('salesPackageConfig' in offer);
+	return !("salesPackageConfig" in offer);
 }
 
 function extractSelectedProductsFromOfferSummary(
-  selectableProductIds: string[],
-  offer: StrippedOfferSummary,
-  optionalProducts: StrippedOptionalProduct[]
+	selectableProductIds: string[],
+	offer: StrippedOfferSummary,
+	optionalProducts: StrippedOptionalProduct[],
 ): Array<StrippedOptionalProduct | StrippedPreassignedProduct> {
-  const selectableProductIdsAsSet = new Set(selectableProductIds);
-  return [
-    ...offer.preassignedProducts,
-    ...optionalProducts.filter((product) =>
-      isOptionalProductToBePurchased(selectableProductIdsAsSet, product)
-    )
-  ];
+	const selectableProductIdsAsSet = new Set(selectableProductIds);
+	return [
+		...offer.preassignedProducts,
+		...optionalProducts.filter((product) =>
+			isOptionalProductToBePurchased(selectableProductIdsAsSet, product),
+		),
+	];
 }
 
 function extractSelectedProductsFromOffer(
-  selectableProductIds: string[],
-  offer: StrippedOffer
+	selectableProductIds: string[],
+	offer: StrippedOffer,
 ): StrippedFareProductConfiguration[] {
-  const selectableProductIdsAsSet = new Set(selectableProductIds);
-  return offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
-    isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
-  );
+	const selectableProductIdsAsSet = new Set(selectableProductIds);
+	return offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
+		isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct),
+	);
 }
 
 function isFareProductToBePurchased(
-  selectableProductIds: Set<string>,
-  fareProduct: StrippedFareProductConfiguration
+	selectableProductIds: Set<string>,
+	fareProduct: StrippedFareProductConfiguration,
 ): boolean {
-  const buyingThisProductIsMandatory = !fareProduct.optional;
-  return (
-    buyingThisProductIsMandatory ||
-    selectableProductIds.has(fareProduct.selectableId)
-  );
+	const buyingThisProductIsMandatory = !fareProduct.optional;
+	return (
+		buyingThisProductIsMandatory ||
+		selectableProductIds.has(fareProduct.selectableId)
+	);
 }
 
 function isOptionalProductToBePurchased(
-  selectableProductIds: Set<string>,
-  product: StrippedOptionalProduct
+	selectableProductIds: Set<string>,
+	product: StrippedOptionalProduct,
 ): boolean {
-  return selectableProductIds.has(product.selectableId);
+	return selectableProductIds.has(product.selectableId);
 }
 
 function compact<T>(array?: Array<T | false | 0 | null | undefined>): T[] {
-  if (!array) return [];
-  return array.filter((item): item is T => Boolean(item));
+	if (!array) {
+		return [];
+	}
+	return array.filter((item): item is T => Boolean(item));
 }

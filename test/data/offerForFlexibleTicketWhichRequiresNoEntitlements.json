@@ -1,77 +1,77 @@
 {
-  "id": "bd723257-36e7-40c3-b309-82ff2d04f327",
-  "name": "Lavpris",
-  "description": "",
-  "price": {
-    "amount": "269.00",
-    "currency": "NOK"
-  },
-  "geographicalValidity": {
-    "serviceJourneys": [
-      {
-        "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
-        "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
-      }
-    ],
-    "pointToPointValidity": {
-      "fromPlace": "NSR:StopPlace:548",
-      "toPlace": "NSR:StopPlace:337"
-    }
-  },
-  "preassignedProducts": [
-    {
-      "id": "VYT:PreassignedFareProduct:LowFare",
-      "version": "VYT:Version:PFP-LowFare-1",
-      "name": "Lavpris",
-      "description": "- Sete tildeles\\n- Kan ikke endres\\n- Ikke refunderbar",
-      "properties": {
-        "isExchangable": false,
-        "isRefundable": false,
-        "accommodations": [
-          {
-            "serviceJourney": {
-              "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
-              "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
-            },
-            "accommodation": []
-          }
-        ],
-        "reservingRequirements": [
-          {
-            "serviceJourney": {
-              "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
-              "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
-            },
-            "reservingRequirement": "RESERVATIONS_COMPULSORY",
-            "seatMapIsAvailable": false
-          }
-        ],
-        "userProfileId": "VYT:UserProfile:Adult",
-        "userProfileVersion": "VYT:Version:UP-Adult-1",
-        "fareClasses": ["STANDARD_CLASS"]
-      },
-      "geographicalValidity": {
-        "serviceJourneys": [
-          {
-            "datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
-            "serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
-          }
-        ],
-        "pointToPointValidity": {
-          "fromPlace": "NSR:StopPlace:548",
-          "toPlace": "NSR:StopPlace:337"
-        }
-      }
-    }
-  ],
-  "optionalProductsSelectableIds": ["anKLTS", "qhUYZI"],
-  "travellerMapping": [
-    {
-      "travellerIds": ["a4689241-1db5-45b8-859c-dcef837feb0d"],
-      "maxNumberOfTravellers": 1,
-      "minNumberOfTravellers": 1,
-      "userType": "ADULT"
-    }
-  ],
-  "available": 1
+	"id": "bd723257-36e7-40c3-b309-82ff2d04f327",
+	"name": "Lavpris",
+	"description": "",
+	"price": {
+		"amount": "269.00",
+		"currency": "NOK"
+	},
+	"geographicalValidity": {
+		"serviceJourneys": [
+			{
+				"datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+				"serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+			}
+		],
+		"pointToPointValidity": {
+			"fromPlace": "NSR:StopPlace:548",
+			"toPlace": "NSR:StopPlace:337"
+		}
+	},
+	"preassignedProducts": [
+		{
+			"id": "VYT:PreassignedFareProduct:LowFare",
+			"version": "VYT:Version:PFP-LowFare-1",
+			"name": "Lavpris",
+			"description": "- Sete tildeles\\n- Kan ikke endres\\n- Ikke refunderbar",
+			"properties": {
+				"isExchangable": false,
+				"isRefundable": false,
+				"accommodations": [
+					{
+						"serviceJourney": {
+							"datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+							"serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+						},
+						"accommodation": []
+					}
+				],
+				"reservingRequirements": [
+					{
+						"serviceJourney": {
+							"datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+							"serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+						},
+						"reservingRequirement": "RESERVATIONS_COMPULSORY",
+						"seatMapIsAvailable": false
+					}
+				],
+				"userProfileId": "VYT:UserProfile:Adult",
+				"userProfileVersion": "VYT:Version:UP-Adult-1",
+				"fareClasses": ["STANDARD_CLASS"]
+			},
+			"geographicalValidity": {
+				"serviceJourneys": [
+					{
+						"datedServiceJourneyId": "ENT:DatedServiceJourney:76649045",
+						"serviceJourneyId": "VYG:ServiceJourney:1-248-602-202111291245"
+					}
+				],
+				"pointToPointValidity": {
+					"fromPlace": "NSR:StopPlace:548",
+					"toPlace": "NSR:StopPlace:337"
+				}
+			}
+		}
+	],
+	"optionalProductsSelectableIds": ["anKLTS", "qhUYZI"],
+	"travellerMapping": [
+		{
+			"travellerIds": ["a4689241-1db5-45b8-859c-dcef837feb0d"],
+			"maxNumberOfTravellers": 1,
+			"minNumberOfTravellers": 1,
+			"userType": "ADULT"
+		}
+	],
+	"available": 1
 }

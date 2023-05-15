@@ -1,13 +1,13 @@
-import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from './offer-utilities.js';
+import { extractIdsOfEntitlementProductsRequiredToPurchaseOffer } from "./offer-utilities.js";
 import {
-  Customer,
-  OfferConfiguration
-} from './types/__generated__/reserve-offer.js';
+	Customer,
+	OfferConfiguration,
+} from "./types/__generated__/reserve-offer.js";
 import {
-  StrippedOffer,
-  StrippedOfferSummary,
-  StrippedOptionalProduct
-} from './types/index.js';
+	StrippedOffer,
+	StrippedOfferSummary,
+	StrippedOptionalProduct,
+} from "./types/index.js";
 
 /**
  * Returns a subset of the supplied customer array containing only the customers
@@ -57,51 +57,51 @@ import {
  * </ul>
  */
 export function reduceCustomersForOfferConfiguration(
-  customers: Customer[],
-  offerConfiguration: OfferConfiguration,
-  offer: StrippedOffer | StrippedOfferSummary,
-  optionalProducts?: StrippedOptionalProduct[]
+	customers: Customer[],
+	offerConfiguration: OfferConfiguration,
+	offer: StrippedOffer | StrippedOfferSummary,
+	optionalProducts?: StrippedOptionalProduct[],
 ): Customer[] {
-  if (offer.id !== offerConfiguration.offerId) {
-    throw new Error(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
-    );
-  }
+	if (offer.id !== offerConfiguration.offerId) {
+		throw new Error(
+			"offer.id and offerConfiguration.offerId do not match; they must be the same",
+		);
+	}
 
-  const selectedCustomers = getCustomersThatMatchSelectedTravellerIds(
-    customers,
-    offerConfiguration.selectedTravellerIds ?? []
-  );
+	const selectedCustomers = getCustomersThatMatchSelectedTravellerIds(
+		customers,
+		offerConfiguration.selectedTravellerIds ?? [],
+	);
 
-  const idsOfEntitlementProductsRequiredForPurchase =
-    extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
-      offerConfiguration.selectableProductIds ?? [],
-      offer,
-      optionalProducts
-    );
+	const idsOfEntitlementProductsRequiredForPurchase =
+		extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
+			offerConfiguration.selectableProductIds ?? [],
+			offer,
+			optionalProducts,
+		);
 
-  const customersWithOnlyNecessaryEntitlements = selectedCustomers.map(
-    (customer) => {
-      const necessaryEntitlements = customer.entitlements?.filter(
-        ({entitlementProductRef: {id}}) =>
-          idsOfEntitlementProductsRequiredForPurchase.has(id)
-      );
-      return {...customer, entitlements: necessaryEntitlements};
-    }
-  );
+	const customersWithOnlyNecessaryEntitlements = selectedCustomers.map(
+		(customer) => {
+			const necessaryEntitlements = customer.entitlements?.filter(
+				({ entitlementProductRef: { id } }) =>
+					idsOfEntitlementProductsRequiredForPurchase.has(id),
+			);
+			return { ...customer, entitlements: necessaryEntitlements };
+		},
+	);
 
-  return removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers(
-    customersWithOnlyNecessaryEntitlements
-  );
+	return removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers(
+		customersWithOnlyNecessaryEntitlements,
+	);
 }
 
 export function getCustomersThatMatchSelectedTravellerIds(
-  customers: Customer[],
-  selectedTravellerIds: string[]
+	customers: Customer[],
+	selectedTravellerIds: string[],
 ) {
-  return customers.filter(({customerId}) =>
-    selectedTravellerIds.includes(customerId)
-  );
+	return customers.filter(({ customerId }) =>
+		selectedTravellerIds.includes(customerId),
+	);
 }
 
 /**
@@ -123,26 +123,26 @@ export function getCustomersThatMatchSelectedTravellerIds(
  * @returns customers A copy of `customers` in which no two customers have an entitlement with the same ID
  */
 export function removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers(
-  customers: Customer[]
+	customers: Customer[],
 ): Customer[] {
-  const updatedCustomers: Customer[] = [];
-  const alreadyUsedEntitlementIds: Set<string> = new Set();
+	const updatedCustomers: Customer[] = [];
+	const alreadyUsedEntitlementIds: Set<string> = new Set();
 
-  for (const customer of customers) {
-    const newEntitlements = [];
+	for (const customer of customers) {
+		const newEntitlements = [];
 
-    for (const entitlement of customer.entitlements ?? []) {
-      const seenBefore = alreadyUsedEntitlementIds.has(
-        entitlement.entitlementProductRef.id
-      );
-      if (!seenBefore) {
-        newEntitlements.push(entitlement);
-        alreadyUsedEntitlementIds.add(entitlement.entitlementProductRef.id);
-      }
-    }
+		for (const entitlement of customer.entitlements ?? []) {
+			const seenBefore = alreadyUsedEntitlementIds.has(
+				entitlement.entitlementProductRef.id,
+			);
+			if (!seenBefore) {
+				newEntitlements.push(entitlement);
+				alreadyUsedEntitlementIds.add(entitlement.entitlementProductRef.id);
+			}
+		}
 
-    updatedCustomers.push({...customer, entitlements: newEntitlements});
-  }
+		updatedCustomers.push({ ...customer, entitlements: newEntitlements });
+	}
 
-  return updatedCustomers;
+	return updatedCustomers;
 }

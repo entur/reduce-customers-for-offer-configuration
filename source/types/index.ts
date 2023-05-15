@@ -1,10 +1,10 @@
 import {
-  FareProductConfiguration,
-  Offer,
-  OfferSummary,
-  OptionalProduct,
-  PreassignedProduct
-} from './__generated__/offers';
+	FareProductConfiguration,
+	Offer,
+	OfferSummary,
+	OptionalProduct,
+	PreassignedProduct,
+} from "./__generated__/offers.js";
 
 /**
  * This is a stripped down version of the Offer types,
@@ -13,24 +13,24 @@ import {
  * the type has changed.
  */
 export type StrippedFareProductConfiguration = Pick<
-  FareProductConfiguration,
-  'selectableId' | 'optional' | 'discountRight'
+	FareProductConfiguration,
+	"selectableId" | "optional" | "discountRight"
 >;
 
-export type StrippedOffer = Pick<Offer, 'id'> & {
-  salesPackageConfig: {
-    fareProducts: StrippedFareProductConfiguration[];
-  };
+export type StrippedOffer = Pick<Offer, "id"> & {
+	salesPackageConfig: {
+		fareProducts: StrippedFareProductConfiguration[];
+	};
 };
 export type StrippedPreassignedProduct = Pick<
-  PreassignedProduct,
-  'discountRight'
+	PreassignedProduct,
+	"discountRight"
 >;
 export type StrippedOptionalProduct = Pick<
-  OptionalProduct,
-  'selectableId' | 'discountRight'
+	OptionalProduct,
+	"selectableId" | "discountRight"
 >;
 
-export type StrippedOfferSummary = Pick<OfferSummary, 'id'> & {
-  preassignedProducts: StrippedPreassignedProduct[];
+export type StrippedOfferSummary = Pick<OfferSummary, "id"> & {
+	preassignedProducts: StrippedPreassignedProduct[];
 };
