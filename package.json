@@ -20,7 +20,7 @@
     }
   },
   "repository": "https://github.com/entur/reduce-customers-for-offer-configuration",
-  "author": "Eirik Vageskar <eirik.vageskar@knowit.no>",
+  "author": "Eirik Vageskar <eirik.vageskar@entur.org>",
   "license": "MIT",
   "homepage": "https://www.npmjs.com/package/@entur/reduce-customers-for-offer-configuration",
   "scripts": {
