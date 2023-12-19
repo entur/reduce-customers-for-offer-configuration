@@ -1,12 +1,12 @@
 import {extractIdsOfEntitlementProductsRequiredToPurchaseOffer} from './offer-utilities.js';
 import {
-  Customer,
-  OfferConfiguration
+  type Customer,
+  type OfferConfiguration,
 } from './types/__generated__/reserve-offer.js';
 import {
-  StrippedOffer,
-  StrippedOfferSummary,
-  StrippedOptionalProduct
+  type StrippedOffer,
+  type StrippedOfferSummary,
+  type StrippedOptionalProduct,
 } from './types/index.js';
 
 /**
@@ -60,47 +60,47 @@ export function reduceCustomersForOfferConfiguration(
   customers: Customer[],
   offerConfiguration: OfferConfiguration,
   offer: StrippedOffer | StrippedOfferSummary,
-  optionalProducts?: StrippedOptionalProduct[]
+  optionalProducts?: StrippedOptionalProduct[],
 ): Customer[] {
   if (offer.id !== offerConfiguration.offerId) {
     throw new Error(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      'offer.id and offerConfiguration.offerId do not match; they must be the same',
     );
   }
 
   const selectedCustomers = getCustomersThatMatchSelectedTravellerIds(
     customers,
-    offerConfiguration.selectedTravellerIds ?? []
+    offerConfiguration.selectedTravellerIds ?? [],
   );
 
   const idsOfEntitlementProductsRequiredForPurchase =
     extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
       offerConfiguration.selectableProductIds ?? [],
       offer,
-      optionalProducts
+      optionalProducts,
     );
 
   const customersWithOnlyNecessaryEntitlements = selectedCustomers.map(
     (customer) => {
       const necessaryEntitlements = customer.entitlements?.filter(
         ({entitlementProductRef: {id}}) =>
-          idsOfEntitlementProductsRequiredForPurchase.has(id)
+          idsOfEntitlementProductsRequiredForPurchase.has(id),
       );
       return {...customer, entitlements: necessaryEntitlements};
-    }
+    },
   );
 
   return removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers(
-    customersWithOnlyNecessaryEntitlements
+    customersWithOnlyNecessaryEntitlements,
   );
 }
 
 export function getCustomersThatMatchSelectedTravellerIds(
   customers: Customer[],
-  selectedTravellerIds: string[]
+  selectedTravellerIds: string[],
 ) {
   return customers.filter(({customerId}) =>
-    selectedTravellerIds.includes(customerId)
+    selectedTravellerIds.includes(customerId),
   );
 }
 
@@ -115,7 +115,6 @@ export function getCustomersThatMatchSelectedTravellerIds(
  *
  * There is some hope that the benefits service may, at some point in the
  * future, share the burden between the travellers.
- *
  * @see <a href="https://entur.slack.com/archives/C01BNGQ8LM6/p1632298229281100?thread_ts=1632293883.270800&cid=C01BNGQ8LM6">
  *  The Slack message in which we were told that customers would be taxed doubly
  * </a>
@@ -123,17 +122,17 @@ export function getCustomersThatMatchSelectedTravellerIds(
  * @returns customers A copy of `customers` in which no two customers have an entitlement with the same ID
  */
 export function removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers(
-  customers: Customer[]
+  customers: Customer[],
 ): Customer[] {
   const updatedCustomers: Customer[] = [];
-  const alreadyUsedEntitlementIds: Set<string> = new Set();
+  const alreadyUsedEntitlementIds = new Set<string>();
 
   for (const customer of customers) {
     const newEntitlements = [];
 
     for (const entitlement of customer.entitlements ?? []) {
       const seenBefore = alreadyUsedEntitlementIds.has(
-        entitlement.entitlementProductRef.id
+        entitlement.entitlementProductRef.id,
       );
       if (!seenBefore) {
         newEntitlements.push(entitlement);

@@ -2,22 +2,25 @@ const SORT_KEYS_RULES = {
   // A fixable sort-keys rule; see https://github.com/namnm/eslint-plugin-sort-keys
   "sort-keys": "off",
   "sort-keys/sort-keys-fix": ["error", "asc", { natural: true }],
+  // Rule which conflicts with `sort-keys/sort-keys-fix`
+  "import/order": "off",
 };
 
 module.exports = {
   prettier: true,
-  plugins: ["jsdoc", "simple-import-sort", "sort-keys"],
-  extends: ["plugin:jsdoc/recommended"],
+  plugins: ["jsdoc", "simple-import-sort", "sort-keys", "vitest"],
+  extends: ["plugin:jsdoc/recommended", "plugin:vitest/recommended"],
   rules: {
     ...SORT_KEYS_RULES,
     ...getJsdocRules(true),
+    curly: "error",
     "multiline-comment-style": ["error", "starred-block"],
     "simple-import-sort/imports": "error",
     "simple-import-sort/exports": "error",
   },
   overrides: [
     {
-      files: "source/types/__generated__/*.ts",
+      files: "source/types/*.ts",
       rules: { "unicorn/no-abusive-eslint-disable": "off" },
     },
     {

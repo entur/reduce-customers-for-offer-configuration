@@ -9,8 +9,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
         [],
-        offerForFlexibleTicketWhichRequiresNoEntitlements
-      )
+        offerForFlexibleTicketWhichRequiresNoEntitlements,
+      ),
     ).toEqual(new Set());
   });
 
@@ -18,8 +18,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
         [],
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
+        offerForFlexibleTicketWhichRequiresEntitlements,
+      ),
     ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
   });
 
@@ -27,8 +27,8 @@ describe('extractIdsOfEntitlementProductsRequiredToPurchaseOffer', () => {
     expect(
       extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
         ['6nbdNy'],
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
+        offerForFlexibleTicketWhichRequiresEntitlements,
+      ),
     ).toEqual(new Set(['ENT:EntitlementProduct:levelA2']));
   });
 });

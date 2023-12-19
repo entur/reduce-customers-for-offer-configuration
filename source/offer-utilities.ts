@@ -1,35 +1,35 @@
 import {
-  StrippedFareProductConfiguration,
-  StrippedOffer,
-  StrippedOfferSummary,
-  StrippedOptionalProduct,
-  StrippedPreassignedProduct
+  type StrippedFareProductConfiguration,
+  type StrippedOffer,
+  type StrippedOfferSummary,
+  type StrippedOptionalProduct,
+  type StrippedPreassignedProduct,
 } from './types/index.js';
 
 export function extractIdsOfEntitlementProductsRequiredToPurchaseOffer(
   selectableProductIds: string[],
   offer: StrippedOffer | StrippedOfferSummary,
-  optionalProducts: StrippedOptionalProduct[] = []
+  optionalProducts: StrippedOptionalProduct[] = [],
 ): Set<string> {
   const selectedProducts = isOfferSummary(offer)
     ? extractSelectedProductsFromOfferSummary(
         selectableProductIds,
         offer,
-        optionalProducts
+        optionalProducts,
       )
     : extractSelectedProductsFromOffer(selectableProductIds, offer);
 
   return new Set(
     compact(
       selectedProducts.map(
-        (product) => product.discountRight?.originatingFromProductId
-      )
-    )
+        (product) => product.discountRight?.originatingFromProductId,
+      ),
+    ),
   );
 }
 
 function isOfferSummary(
-  offer: StrippedOffer | StrippedOfferSummary
+  offer: StrippedOffer | StrippedOfferSummary,
 ): offer is StrippedOfferSummary {
   return !('salesPackageConfig' in offer);
 }
@@ -37,30 +37,30 @@ function isOfferSummary(
 function extractSelectedProductsFromOfferSummary(
   selectableProductIds: string[],
   offer: StrippedOfferSummary,
-  optionalProducts: StrippedOptionalProduct[]
+  optionalProducts: StrippedOptionalProduct[],
 ): Array<StrippedOptionalProduct | StrippedPreassignedProduct> {
   const selectableProductIdsAsSet = new Set(selectableProductIds);
   return [
     ...offer.preassignedProducts,
     ...optionalProducts.filter((product) =>
-      isOptionalProductToBePurchased(selectableProductIdsAsSet, product)
-    )
+      isOptionalProductToBePurchased(selectableProductIdsAsSet, product),
+    ),
   ];
 }
 
 function extractSelectedProductsFromOffer(
   selectableProductIds: string[],
-  offer: StrippedOffer
+  offer: StrippedOffer,
 ): StrippedFareProductConfiguration[] {
   const selectableProductIdsAsSet = new Set(selectableProductIds);
   return offer.salesPackageConfig.fareProducts.filter((fareProduct) =>
-    isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct)
+    isFareProductToBePurchased(selectableProductIdsAsSet, fareProduct),
   );
 }
 
 function isFareProductToBePurchased(
   selectableProductIds: Set<string>,
-  fareProduct: StrippedFareProductConfiguration
+  fareProduct: StrippedFareProductConfiguration,
 ): boolean {
   const buyingThisProductIsMandatory = !fareProduct.optional;
   return (
@@ -71,12 +71,28 @@ function isFareProductToBePurchased(
 
 function isOptionalProductToBePurchased(
   selectableProductIds: Set<string>,
-  product: StrippedOptionalProduct
+  product: StrippedOptionalProduct,
 ): boolean {
   return selectableProductIds.has(product.selectableId);
 }
 
-function compact<T>(array?: Array<T | false | 0 | null | undefined>): T[] {
-  if (!array) return [];
-  return array.filter((item): item is T => Boolean(item));
+function compact<T>(array?: Array<T | false | 0 | undefined>): T[] {
+  if (!array) {
+    return [];
+  }
+
+  // eslint-disable-next-line unicorn/no-array-callback-reference -- Typescript needs us to pass this callback directly to have type safety
+  return array.filter(isNotNil);
+}
+
+function isNotNil<T>(s: T | 0 | false | undefined): s is T {
+  if (s === 0) {
+    return false;
+  }
+
+  if (s === false) {
+    return false;
+  }
+
+  return Boolean(s);
 }

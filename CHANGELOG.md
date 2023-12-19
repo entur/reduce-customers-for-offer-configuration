@@ -40,7 +40,7 @@ export function reduceCustomersForOfferConfiguration(
   customers: Customer[],
   offerConfiguration: OfferConfiguration,
   offer: StrippedOffer | StrippedOfferSummary,
-  optionalProducts?: StrippedOptionalProduct[]
+  optionalProducts?: StrippedOptionalProduct[],
 ): Customer[];
 ```
 

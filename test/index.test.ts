@@ -2,7 +2,7 @@ import {describe, expect, it} from 'vitest';
 
 import {
   reduceCustomersForOfferConfiguration,
-  removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers
+  removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers,
 } from '../source/index.js';
 import offerForFlexibleTicketWhichRequiresEntitlements from './data/offerForFlexibleTicketWhichRequiresEntitlements.json' assert {type: 'json'};
 
@@ -12,10 +12,10 @@ describe('reduceCustomersForOfferConfiguration', () => {
       reduceCustomersForOfferConfiguration(
         [],
         {offerId: 'aa004b4e-c539-4fd8-bc1f'},
-        offerForFlexibleTicketWhichRequiresEntitlements
-      )
+        offerForFlexibleTicketWhichRequiresEntitlements,
+      ),
     ).toThrow(
-      'offer.id and offerConfiguration.offerId do not match; they must be the same'
+      'offer.id and offerConfiguration.offerId do not match; they must be the same',
     );
   });
 });
@@ -24,7 +24,7 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
   describe('Cases where input should equal output', () => {
     it('No customers', () => {
       expect(
-        removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([])
+        removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers([]),
       ).toEqual([]);
     });
 
@@ -38,12 +38,12 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -52,11 +52,11 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
-        }
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
+        },
       ]);
     });
 
@@ -70,19 +70,19 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
               },
               {
                 contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelB1',
-                  version: 'ENT:Version:EP-levelB1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelB1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -91,18 +91,18 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
+                version: 'ENT:Version:EP-levelA1-1',
+              },
             },
             {
               contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelB1',
-                version: 'ENT:Version:EP-levelB1-1'
-              }
-            }
-          ]
-        }
+                version: 'ENT:Version:EP-levelB1-1',
+              },
+            },
+          ],
+        },
       ]);
     });
   });
@@ -118,19 +118,19 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
               },
               {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -139,11 +139,11 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
-        }
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
+        },
       ]);
     });
 
@@ -157,10 +157,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
           },
           {
             customerId: '9000',
@@ -169,12 +169,12 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -183,15 +183,15 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
         },
         {
           customerId: '9000',
-          entitlements: []
-        }
+          entitlements: [],
+        },
       ]);
     });
 
@@ -205,10 +205,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
           },
           {
             customerId: '9000',
@@ -217,12 +217,12 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-2'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelA1-2',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -231,15 +231,15 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
         },
         {
           customerId: '9000',
-          entitlements: []
-        }
+          entitlements: [],
+        },
       ]);
     });
 
@@ -253,10 +253,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
           },
           {
             customerId: '9000',
@@ -265,12 +265,12 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3569901',
@@ -279,15 +279,15 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
         },
         {
           customerId: '9000',
-          entitlements: []
-        }
+          entitlements: [],
+        },
       ]);
     });
   });
@@ -303,26 +303,26 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
               },
               {
                 contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelB1',
-                  version: 'ENT:Version:EP-levelB1-1'
-                }
+                  version: 'ENT:Version:EP-levelB1-1',
+                },
               },
               {
                 contractId: 'c02f34e7-bb0c-4346-94db-98739874897',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelC1',
-                  version: 'ENT:Version:EP-levelC1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelC1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3538975',
@@ -331,25 +331,25 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
+                version: 'ENT:Version:EP-levelA1-1',
+              },
             },
             {
               contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelB1',
-                version: 'ENT:Version:EP-levelB1-1'
-              }
+                version: 'ENT:Version:EP-levelB1-1',
+              },
             },
             {
               contractId: 'c02f34e7-bb0c-4346-94db-98739874897',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelC1',
-                version: 'ENT:Version:EP-levelC1-1'
-              }
-            }
-          ]
-        }
+                version: 'ENT:Version:EP-levelC1-1',
+              },
+            },
+          ],
+        },
       ]);
     });
 
@@ -363,10 +363,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
-              }
-            ]
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
+              },
+            ],
           },
           {
             customerId: '9000',
@@ -375,17 +375,17 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelA1',
-                  version: 'ENT:Version:EP-levelA1-1'
-                }
+                  version: 'ENT:Version:EP-levelA1-1',
+                },
               },
               {
                 contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelB1',
-                  version: 'ENT:Version:EP-levelB1-1'
-                }
-              }
-            ]
+                  version: 'ENT:Version:EP-levelB1-1',
+                },
+              },
+            ],
           },
           {
             customerId: '313',
@@ -394,19 +394,19 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
                 contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelB1',
-                  version: 'ENT:Version:EP-levelB1-1'
-                }
+                  version: 'ENT:Version:EP-levelB1-1',
+                },
               },
               {
                 contractId: 'c02f34e7-bb0c-4346-94db-98739874897',
                 entitlementProductRef: {
                   id: 'ENT:EntitlementProduct:levelC1',
-                  version: 'ENT:Version:EP-levelC1-1'
-                }
-              }
-            ]
-          }
-        ])
+                  version: 'ENT:Version:EP-levelC1-1',
+                },
+              },
+            ],
+          },
+        ]),
       ).toEqual([
         {
           customerId: '3538975',
@@ -415,10 +415,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: '72a71456-7508-4148-a25a-b0e9bea8f595',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelA1',
-                version: 'ENT:Version:EP-levelA1-1'
-              }
-            }
-          ]
+                version: 'ENT:Version:EP-levelA1-1',
+              },
+            },
+          ],
         },
         {
           customerId: '9000',
@@ -427,10 +427,10 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: 'c02f34e7-bb0c-4346-94db-4112c587a67b',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelB1',
-                version: 'ENT:Version:EP-levelB1-1'
-              }
-            }
-          ]
+                version: 'ENT:Version:EP-levelB1-1',
+              },
+            },
+          ],
         },
         {
           customerId: '313',
@@ -439,11 +439,11 @@ describe('removeAllButTheFirstOccurrenceOfEachEntitlementFromCustomers', () => {
               contractId: 'c02f34e7-bb0c-4346-94db-98739874897',
               entitlementProductRef: {
                 id: 'ENT:EntitlementProduct:levelC1',
-                version: 'ENT:Version:EP-levelC1-1'
-              }
-            }
-          ]
-        }
+                version: 'ENT:Version:EP-levelC1-1',
+              },
+            },
+          ],
+        },
       ]);
     });
   });
