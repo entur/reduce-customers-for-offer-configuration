@@ -6,22 +6,26 @@
   "files": [
     "dist"
   ],
-  "main": "./dist/reduce-customers-for-offer-configuration.cjs",
-  "module": "./dist/reduce-customers-for-offer-configuration.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
   "exports": {
-    ".": {
-      "import": "./dist/reduce-customers-for-offer-configuration.js",
-      "require": "./dist/reduce-customers-for-offer-configuration.cjs"
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    },
+    "import": {
+      "types": "./dist/index.d.mts",
+      "default": "./dist/index.mjs"
     }
   },
-  "types": "./dist/index.d.ts",
   "repository": "https://github.com/entur/reduce-customers-for-offer-configuration",
   "author": "Eirik Vageskar <eirik.vageskar@knowit.no>",
   "license": "MIT",
   "homepage": "https://www.npmjs.com/package/@entur/reduce-customers-for-offer-configuration",
   "scripts": {
     "prepack": "npm run build",
-    "build": "vite build",
+    "build": "rimraf dist && pkgroll --src=source --minify",
     "update-types": "npx swagger-typescript-api --path https://api.staging.entur.io/offers/v2/api-docs/swagger.json --output source/types/__generated__ -n offers.ts --no-client && npx swagger-typescript-api --path https://api.staging.entur.io/api-docs/reserve-offer?group=public --output source/types/__generated__ -n reserve-offer.ts --no-client",
     "test": "vitest run",
     "lint": "npx prettier --check *.{md,json} .*.cjs; xo",
@@ -45,8 +49,6 @@
     "prettier": "^2.3.2",
     "type-fest": "^0.21.3",
     "typescript": "^4.4.3",
-    "vite": "^4.3.5",
-    "vite-plugin-dts": "^2.3.0",
     "vitest": "^0.31.0",
     "xo": "^0.42.0"
   }
