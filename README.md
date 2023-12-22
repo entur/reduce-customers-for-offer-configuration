@@ -38,3 +38,5 @@ from and open a PR.
 ## Authors
 
 - [@vages](https://www.github.com/vages)
+- [@kentandersen](https://www.github.com/kentandersen)
+- [@frankwaldal](https://www.github.com/frankwaldal)
